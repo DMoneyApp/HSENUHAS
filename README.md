@@ -1,3 +1,7 @@
+## V8.3 HOTFIX
+- Run `supabase/v8.3-hotfix.sql` once after V8.2.
+- This fixes registration database errors caused by the legacy profile email requirement, adds a separate optional recovery email, prevents duplicate usernames, restricts self-service password recovery to registered recovery emails, and improves dynamic modal close/cancel handling.
+
 # HSE360 Platform — V8 Final Architecture
 
 ## What this release is

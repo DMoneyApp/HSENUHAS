@@ -145,6 +145,13 @@
 
   async function init(){
     applyTheme();
+    // Global modal/drawer close delegation: works for dynamically-created dialogs too.
+    document.addEventListener('click',e=>{
+      const closeModal=e.target.closest?.('[data-close-modal]');
+      if(closeModal){e.preventDefault();e.stopPropagation();document.getElementById(closeModal.dataset.closeModal)?.remove();return;}
+      const closeDrawer=e.target.closest?.('[data-close-drawer]');
+      if(closeDrawer){e.preventDefault();e.stopPropagation();document.getElementById('drawer')?.remove();return;}
+    },true);
     if(!sb){renderAuth('Connection settings are missing. Add the Supabase URL and publishable key to config.js.');return;}
     sb.auth.onAuthStateChange(async(_event,s)=>{state.session=s;if(s){await enterApp()}else{state.profile=null;state.activeOrg=null;state.membership=null;state.records=[];renderAuth();}});
     const {data,error}=await sb.auth.getSession();
@@ -231,6 +238,9 @@
     if(p.length<10){document.getElementById('auth-msg').outerHTML=noticeHtml('Password must contain at least 10 characters.','error');return}
     if(p!==c){document.getElementById('auth-msg').outerHTML=noticeHtml('Passwords do not match.','error');return}
     if(email&&!/^\S+@\S+\.\S+$/.test(email)){document.getElementById('auth-msg').outerHTML=noticeHtml('Enter a valid recovery email.','error');return}
+    const avail=await sb.rpc('username_available',{p_username:u});
+    if(avail.error){document.getElementById('auth-msg').outerHTML=noticeHtml('Unable to validate username. Please try again.','error');return}
+    if(!avail.data){document.getElementById('auth-msg').outerHTML=noticeHtml('That username is already registered. Please choose another username.','error');return}
     const authEmail=email||`${u.toLowerCase()}@hse360.local`;
     const btn=document.querySelector('#register-form button[type=submit]');btn.disabled=true;btn.textContent='Creating account…';
     const {data,error}=await sb.auth.signUp({email:authEmail,password:p,options:{data:{username:u,recovery_email:email||null,full_name:n||null,department:d||null}}});
@@ -239,7 +249,7 @@
     else {document.getElementById('auth-msg').outerHTML=noticeHtml('Account created. Complete email confirmation if your Supabase project requires it, then sign in.','success');btn.disabled=false;btn.textContent='Create secure account';}
   }
 
-  async function forgot(){const e=document.getElementById('fe')?.value.trim();if(!e){document.getElementById('auth-msg').outerHTML=noticeHtml('Enter your recovery email.','error');return}const {error}=await sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});document.getElementById('auth-msg').outerHTML=noticeHtml(error?error.message:'If the account has a recovery email, a recovery message has been requested.',error?'error':'success')}
+  async function forgot(){const e=document.getElementById('fe')?.value.trim().toLowerCase();if(!e){document.getElementById('auth-msg').outerHTML=noticeHtml('Enter your recovery email.','error');return}const chk=await sb.rpc('recovery_email_registered',{p_email:e});if(chk.error){document.getElementById('auth-msg').outerHTML=noticeHtml('Unable to check recovery email. Please try again.','error');return}if(!chk.data){document.getElementById('auth-msg').outerHTML=noticeHtml('No recovery email is registered for this address. Contact your organization administrator for a temporary password.','error');return}const {error}=await sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});document.getElementById('auth-msg').outerHTML=noticeHtml(error?error.message:'If the account has a recovery email, a recovery message has been requested.',error?'error':'success')}
 
   function renderPasswordChange(){document.body.innerHTML=`<div class="auth-shell"><section class="auth-visual"><div class="auth-brand"><div class="platform-mark">360</div><div><div class="brand-name">HSE360 Platform</div><div class="brand-sub">Secure account control</div></div></div><div class="auth-hero"><div class="eyebrow">Administrator-issued temporary password</div><h1>Protect your<br><span>account.</span></h1><p>Your administrator cannot see the new password you choose.</p></div></section><section class="auth-panel"><div class="auth-card"><div class="eyebrow">Required action</div><h2>Change password</h2><p class="lead">Use at least 10 characters.</p><div id="pw-msg"></div><form id="pw-form" class="auth-form"><div class="field"><label>New password</label><input id="np" type="password" autocomplete="new-password"></div><div class="field"><label>Confirm password</label><input id="nc" type="password" autocomplete="new-password"></div><button class="btn primary block" type="submit">Set private password</button></form></div></section></div>`;document.getElementById('pw-form').addEventListener('submit',async e=>{e.preventDefault();const p=document.getElementById('np').value,c=document.getElementById('nc').value;if(p.length<10||p!==c){document.getElementById('pw-msg').innerHTML=noticeHtml('Use at least 10 characters and make both passwords match.','error');return}const {error}=await sb.auth.updateUser({password:p});if(error){document.getElementById('pw-msg').innerHTML=noticeHtml(error.message,'error');return}await sb.rpc('complete_password_change');await enterApp()})}
 
