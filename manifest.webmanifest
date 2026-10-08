@@ -1,10 +1,10 @@
 {
-  "name":"NUHAS HSE360",
-  "short_name":"HSE360",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#0b1220",
-  "theme_color":"#0b1220",
-  "description":"Integrated HSE & IMS Management System for Emirates National Copper Factory – NUHAS",
-  "icons":[]
+  "name": "HSE360 Platform",
+  "short_name": "HSE360",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0b1220",
+  "description": "Secure multi-organization HSE & IMS management platform",
+  "icons": []
 }

@@ -1,27 +1,34 @@
-# NUHAS HSE360 V7 — Workforce, Compliance & Asset Register
+# HSE360 V8 — Data Migration Notes
 
-This V7 adds daily-use registers for:
-- Employees
-- PPE issue records linked to employee code/name and issue date
-- Competency & Authorisations: First Aider, Fire Fighter, External Training and operator authorisations
-- Licences, certificates and contracts
-- Fire equipment monthly register
-- 3rd-party inspection/validity register
+## Existing NUHAS data
+The V8 migration creates one tenant:
 
-## Two-month renewal alert rule
-Any record in Competency, Licences or 3rd Party Inspections with an expiry/validity date on or before two calendar months from today, and not marked renewed/closed/compliant/valid/completed, appears in the dashboard attention list and notification bell.
+**Emirates National Copper Factory – NUHAS**
 
-The alert persists until the record is updated/renewed or marked with an appropriate completed/valid status.
+Existing `profiles` become members of that tenant using their current role (or `guest` when the role is not recognized). Existing `hse_records` and `audit_events` receive the NUHAS `organization_id`.
 
-## Source material incorporated
-- The supplied License/Certificates presentation is represented in `templates/licenses-certificates-starter.csv`.
-- The supplied fire equipment workbook is represented in `templates/fire-equipment-register.csv`.
-- The visible PPE issue rows from the supplied screenshot are represented in `templates/ppe-issue-starter.csv`.
-- The visible third-party inspection rows from the supplied screenshot are represented in `templates/third-party-inspections-starter.csv`.
+No existing HSE record is intentionally deleted or rewritten into another company.
 
-These starter CSVs are for review/import and do not silently alter the live database.
+## New companies
+New companies are inserted into `organizations` and immediately receive an empty data context. Their records are generated with a separate organization ID and a separate reference sequence.
 
-## Import
-V7 adds CSV import on module registers. Import is restricted to `super_admin`, `hse_admin` and `hse_engineer`. Existing records are not overwritten.
+## References
+Existing NUHAS reference numbers remain untouched.
 
-Before importing production data, review the CSV values and dates.
+New records use the organization's configurable prefix, module code, year and sequence, for example:
+
+`NUHAS-PTW-2026-00001`
+
+A different company can generate:
+
+`ABC-PTW-2026-00001`
+
+without sharing the NUHAS sequence.
+
+## Memberships
+- Active membership = company access granted.
+- Pending membership = request submitted, no HSE data access.
+- Suspended/rejected = no HSE data access.
+
+## Permissions
+Role defaults are applied when a membership is created. Organization administrators can later override individual module permissions.

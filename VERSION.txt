@@ -1,0 +1,2 @@
+HSE360 V8.2 FINAL PRODUCTION
+Corrected PostgreSQL function input-parameter compatibility for legacy is_super_admin/is_admin functions.
