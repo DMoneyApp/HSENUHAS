@@ -38,3 +38,6 @@ The current project uses the supported Supabase `auth.signUp()` path. A database
 - The admin reset function runs server-side and requires an authorized admin JWT.
 - HSE attachments use a private storage bucket and signed URLs.
 - RLS remains the primary database authorization boundary.
+
+## V6 hardening
+After deploying the V5 frontend, run `supabase/hardening-v6.sql` once in Supabase SQL Editor. This hardens username uniqueness, bootstrap admin creation, access management, audit integrity and direct record-write privileges.

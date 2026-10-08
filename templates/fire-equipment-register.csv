@@ -1,0 +1,119 @@
+equipment_id,category,area,equipment_type,equipment_location,source
+MCV 01,MCV,Store :,Main Control Valve,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 01,FE-DCP,Store :,DCP FE 5KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 01,FH-HR,Store :,Fire Hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 02,FE-DCP,Store :,DCP FE 5KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 01,FE-CO2,Store :,C02 9KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 02,FE-CO2,Store :,C02 9kg,Outside store Near Electrical room,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 01,FHY,Parking Area,Fire Hydrant,Corner Office near store,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 02,FHY,Parking Area,Fire Hydrant,Near 2nd main gate,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 03,FE-DCP,TLJ 600 Near Exit,DCP 9KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 02,FH-HR,TLJ 600 / Picc Exit,Hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 03,FE-CO2,TLJ 600 / Picc Exit,C02 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 04,FE-DCP,TLJ 600 / Picc Exit,DCP 4kG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 03,FHY,TLJ 600 / Picc Exit,Hydrant,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 04,FE-CO2,DBM 01 / TLJ400,Co2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 05,FE-DCP,DBM 01 / TLJ400,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 05,FE-CO2,Rolling Mill,CO2 5KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 06,FE-DCP,Rolling Mill,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 03,FH-HR,Main Exit/ General Waste,Fire Hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 07,FE-DCP,Main Exit/ General Waste,DCP 5KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 06,FE-CO2,PICC ROOM,Co 2 6kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 08,FE-DCP,PICC ROOM,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 09,FE-DCP,Picc Office,DCP 5KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 10,FE-DCP,Picc Office,DCP 4KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 11,FE-DCP,TLJ 350/ 01,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 04,FH-HR,RBD / TLJ 350 02 Machine,Hose Reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 07,FE-CO2,RBD / TLJ 350 02 Machine,CO 2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 12,FE-DCP,RBD / TLJ 350 02 Machine,DCP 5Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 13,FE-DCP,TLJ 500 Main Exit Door,DCP 6 Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 05,FH-HR,Picc Office Back Exit,Hose Reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 14,FE-DCP,Picc Office Back Exit,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 08,FE-CO2,Picc Office Back Exit,CO2,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 09,FE-CO2,New Lab,CO2 2kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 01,FE-FOAM,New Lab,Foam 6 liter,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 15,FE-DCP,Labour rest area,DCP 9kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 06,FH-HR,Labour rest area,fire hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 16,FE-DCP,Labour rest area,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 10,FE-CO2,Labour rest area,Co2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 17,FE-DCP,Labour rest area,DCP 9kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 11,FE-CO2,Conference Area,Co2 5 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 18,FE-DCP,Conference Area,Dcp 06 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 19,FE-DCP,Office,DCP 9KG,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 12,FE-CO2,Office,Co2 5 kg,HR Server room,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 20,FE-DCP,Office,DCP 6 kg,HR Server room,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 21,FE-DCP,Pantry Area Upstairs,DCP 9kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 07,FH-HR,Pantry Area Upstairs,Fire hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 22,FE-DCP,Pantry Area Upstairs,dcp 6kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 13,FE-CO2,Pantry Area Upstairs,co2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 04,FHY,Pantry Area Upstairs,Hydrant,Near Washroom,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 02,FE-FOAM,Chemical Store room 01,foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 03,FE-FOAM,Chemical Store room 01,foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 23,FE-DCP,Chemical Store room 01,Dcp 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 24,FE-DCP,Chemical Store room 01,Dcp 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FM200 01,FE-FM200,Chemical Store room 01,FM 200 500 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 04,FE-FOAM,Chemical Store room 02,Foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 05,FE-FOAM,Chemical Store room 02,Foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 25,FE-DCP,Chemical Store room 02,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 26,FE-DCP,Chemical Store room 02,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 14,FE-CO2,Canteen,C02 6kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 15,FE-CO2,Electrical Sub station  01,C02 FE 9 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 08,FH-HR,Cnc Area,Fire Hose Reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 16,FE-CO2,Cnc Area,Co 2 9kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 27,FE-DCP,Cnc Area,Dcp 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 28,FE-DCP,Die shop,Dcp 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 29,FE-DCP,Die shop,Dcp 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 17,FE-CO2,Bailing Area,Co2 6kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 06,FE-FOAM,Upcast Area,Foam 9kg,Near Stair and exit downside,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 30,FE-DCP,Upcast Area,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 31,FE-DCP,Upcast Area,DCP 4Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 18,FE-CO2,Upcast Area,Co2 5kg,Downside middle,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 09,FH-HR,Upcast Area,Hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 32,FE-DCP,Upcast Area,Dcp 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 19,FE-CO2,Upcast Area,Co2 6 kg,Downside Near Upcast one border wall,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 20,FE-CO2,Upcast Area,Co2 6kg,Upcast 01 downside pillar,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 21,FE-CO2,Upcast Area,Co2 6kg,Upcast 02 Upside,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 07,FE-FOAM,Upcast Area,Foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 08,FE-FOAM,Upcast Area,Foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 33,FE-DCP,Upcast Area,DCP 4kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 22,FE-CO2,Upcast Area,Co2 3kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 09,FE-FOAM,Upcast Area,Foam 9 liter,Upcast 01 upside,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 23,FE-CO2,Upcast Area,CO2 6kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 34,FE-DCP,Electrical Room Upcast Exit,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 10,FE-FOAM,Fire Pump Room,Foam 9 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 24,FE-CO2,Workshop,CO 2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 35,FE-DCP,Workshop,Dcp 9kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 05,FHY,Workshop,Fire Hydrant,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FHY 06,FHY,Road,Hydrant,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 10,FH-HR,Enamel,Hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 36,FE-DCP,Enamel,Dcp 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 25,FE-CO2,Enamel,C02 5kg,Coating area,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 11,FE-FOAM,Enamel,Foam 9Liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 12,FE-FOAM,Enamel,Foam 9Liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 13,FE-FOAM,Enamel,Foam 50 Liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 14,FE-FOAM,Enamel,Foam 50 Liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 37,FE-DCP,Enamel,DCP 5KG,SMALL BACK EXIT,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 11,FH-HR,Enamel,Hose Reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 26,FE-CO2,Enamel,C02 5Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 38,FE-DCP,Recepetion Area,6 kg Dcp,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 27,FE-CO2,Recepetion Area,Co2 5 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 12,FH-HR,Recepetion Area,Fire hose reel,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 28,FE-CO2,Recepetion Area,Co2 6 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FB 01,FB,Recepetion Area,Fire Blanket,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 39,FE-DCP,Old Lab,Dcp 9 Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 29,FE-CO2,Transformer Room,CO 2 6 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 40,FE-DCP,Transformer Room,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 30,FE-CO2,Substation 02,Co2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 31,FE-CO2,Substation 02,co2 5Kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FH-HR 13,FH-HR,DBM 5 Area,Fire hose reels,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 41,FE-DCP,DBM 5 Area,DCP 9 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 15,FE-FOAM,DBM 5 Area,50 Kg Foam Back side,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 32,FE-CO2,DBM 5 Area,CO 2 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 42,FE-DCP,DBM 5 Area,DCP 9 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 43,FE-DCP,Charcoal Area,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-DCP 44,FE-DCP,Charcoal Area,DCP 5kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 33,FE-CO2,Detinning Area,CO2 10kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 16,FE-FOAM,Detinning Area,Foam 25 liters,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 34,FE-CO2,Detinning Area,CO2 10kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-FOAM 17,FE-FOAM,Finished Good Warehouse,Foam 25 Liter,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
+FE-CO2 35,FE-CO2,Finished Good Warehouse,Co2 10 kg,,NUHAS Monthly Fire Extinguisher & Fire Equipment Monitoring Checklist
