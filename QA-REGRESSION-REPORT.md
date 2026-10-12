@@ -42,3 +42,27 @@ The package is therefore a production-targeted V8 release candidate, with the li
 - `qa/certificate-renewal-workflow.js`: deterministic normalized-key matching and predecessor/successor chain checks.
 - `qa/certificate-duplicate-sql-static-smoke.js`: static guard for candidate organization-scoped uniqueness indexes and safe migration preflight.
 - These are local checks; the SQL candidate has not been run in a real PostgreSQL/Supabase database.
+
+
+## V8.8.6 addendum — certificate importer quality
+
+- All 16 `qa/*.js` scripts pass after the importer changes.
+- The certificate reader smoke tests cover noisy issuer rejection, award-style recipient extraction, PDF text item reflow, UAE day-first dates and OCR confidence/fallback behavior.
+- These remain local helper/static checks; no in-browser OCR run against the original file or live storage/database test is claimed. See `V8.8.6-LOCAL-QA-REPORT.md`.
+
+## V8.8.8 checkpoint (2026-10-12)
+- Added `qa/password-recovery-privacy-smoke.js` to guard against user-facing recovery-email enumeration.
+- All 18 local QA scripts passed and `node --check app.js` passed.
+- These checks do not constitute live Supabase, browser E2E, or tenant-isolation testing.
+
+## V8.8.9 usability/reporting checkpoint (2026-10-12)
+- `node --check app.js`: PASS.
+- All 19 `qa/*.js` scripts passed individually, including `qa/v889-usability-smoke.js` (19 source-level regression guards).
+- Added dashboard quick-capture and period presets, controlled report metadata/print output, record document control, fire checklist print layout, notification navigation badges, searchable multi-select JSA starter reuse and draft-first permit entry.
+- Live browser, authenticated Supabase, cross-tenant, storage and actual PDF-rendering tests were not run. See `V8.8.9-LOCAL-QA-REPORT.md`.
+
+## V8.8.10 founder attribution checkpoint (2026-10-12)
+- Full name `Danish Bilal Shaikh` and title `Founder & Developer` now appear in the main app footer, sidebar, login and workspace-access/onboarding states.
+- LinkedIn profile `https://www.linkedin.com/in/odanisho/` is a clickable external link with safe `rel` attributes.
+- Static founder-credit smoke test: 7/7 passed; complete QA suite: 20/20 passed; JavaScript syntax passed.
+- Not browser-tested or deployed. See `V8.8.10-LOCAL-QA-REPORT.md`.

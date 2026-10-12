@@ -1,2 +1,2 @@
-NUHAS HSE360 V8.8.5 — Compliance Renewal Reminder Windows
-Local cumulative release candidate. Adds 90/60/30/7-day expiry bands and invalid-date handling on top of V8.8.4 duplicate prevention and renewal history. Not deployed or live-verified.
+NUHAS HSE360 V8.8.10 — Founder attribution and LinkedIn visibility correction
+Local cumulative release candidate based on the verified local V8.8.9 master. Not deployed or live-verified.

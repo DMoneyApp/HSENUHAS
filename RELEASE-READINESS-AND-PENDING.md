@@ -1,11 +1,11 @@
-# NUHAS HSE360 V8.8.5 — Release readiness and remaining work
+# NUHAS HSE360 V8.8.6 — Release readiness and remaining work
 
 **Package type:** Consolidated local release candidate. This is the latest packaged local source, not a claim of production verification.
 
 ## Included in this package
 
 - Existing multi-organization HSE360 frontend, authentication integration and records/register workflows from the V8.8 base.
-- Import parser/retry workflow and browser-side certificate PDF text/OCR suggestion workflow, including V8.8.3 source-PDF upload/linkage, V8.8.4 duplicate checks/renewal history, and V8.8.5 reminder windows.
+- Import parser/retry workflow and browser-side certificate PDF text/OCR suggestion workflow, including V8.8.3 source-PDF upload/linkage, V8.8.4 duplicate checks/renewal history, V8.8.5 reminder windows, and V8.8.6 OCR/layout/recipient improvements.
 - Linked corrective actions with owner, due date, priority, source traceability and source navigation.
 - Inspection outcome/finding validation and failed-item prefill into corrective-action drafts.
 - Corrective-action work queue with deadline/owner/priority states and filters.
@@ -21,6 +21,10 @@
 - ZIP integrity test — performed after archive creation.
 
 These are local syntax, deterministic validator, static regression and file-integrity checks. They do not substitute for authenticated integration testing or SQL execution.
+
+## V8.8.6 certificate importer update
+
+Selectable PDF text is reconstructed by visual line position. Low-quality text can trigger browser OCR, low-confidence scans of up to three pages receive an alternate layout pass, and issuer/recipient suggestions are filtered for likely OCR noise. A distinct holder/recipient field is saved in record JSON. For UAE workflows, ambiguous numeric dates use day-first interpretation, and the review notice explicitly requires checking dates against the original. The source PDF from the reported screenshot was not available for a direct OCR run, so this is improved local logic—not proof that every scan will parse correctly. See `V8.8.6-CHANGELOG.md` and `V8.8.6-LOCAL-QA-REPORT.md`.
 
 ## V8.8.5 renewal reminder behavior
 
@@ -42,7 +46,7 @@ The reader checks the currently loaded license records before uploading and can 
 
 ## Known limitations
 
-- OCR is browser-side assistance; user review against the original document remains mandatory. CDN libraries require network access, and OCR/date recognition can fail. V8.8.3 source-PDF upload and V8.8.4 duplicate/renewal checks are implemented in source but have not been authenticated against live Supabase storage or a live database. The V8.8.4 duplicate warning checks loaded client-side records; only a successfully tested/applied server-side guard can address concurrent submissions.
+- OCR is browser-side assistance; user review against the original document remains mandatory. CDN libraries require network access, and OCR/date recognition can fail. V8.8.6 adds layout reconstruction, an OCR confidence indicator, fallback scoring and issuer/recipient validation, but the exact user PDF has not been available for direct OCR testing. V8.8.3 source-PDF upload and V8.8.4 duplicate/renewal checks are implemented in source but have not been authenticated against live Supabase storage or a live database. The V8.8.4 duplicate warning checks loaded client-side records; only a successfully tested/applied server-side guard can address concurrent submissions.
 - The action closure gate and permit lifecycle triggers are candidate implementations until executed and proven on the target schema in staging.
 - Scheduled reminders and outgoing email delivery are not claimed as verified background services.
 - A user-interface rule by itself is not a security boundary. Production assurance depends on database permissions, RLS, RPC behavior and trigger execution.
@@ -51,3 +55,7 @@ The reader checks the currently loaded license records before uploading and can 
 ## Why this is not marked production-final
 
 Production readiness depends on testing against the actual Supabase schema, storage policies, authentication configuration and deployed browser application. Those systems were not accessed or changed during this local packaging step. A static pass can show that source checks pass; it cannot prove that a migration compiles on the live database or that cross-company access is blocked in runtime.
+
+
+## V8.8.7 update
+Added a manual CSV export for the dashboard compliance renewal watch. It uses currently loaded records and does not send scheduled reminders. Browser download testing and live Supabase authorization testing remain pending.
