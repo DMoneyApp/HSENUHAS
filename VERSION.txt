@@ -1,3 +1,2 @@
-HSE360 V8.3 FINAL HOTFIX
-Multi-organization HSE & IMS platform
-Fixes: optional recovery-email registration, username pre-check, recovery-only reset, dynamic modal close/cancel handling.
+NUHAS HSE360 V8.8.5 — Compliance Renewal Reminder Windows
+Local cumulative release candidate. Adds 90/60/30/7-day expiry bands and invalid-date handling on top of V8.8.4 duplicate prevention and renewal history. Not deployed or live-verified.

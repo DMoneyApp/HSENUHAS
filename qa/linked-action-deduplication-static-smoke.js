@@ -1,0 +1,16 @@
+const fs = require('fs');
+const assert = require('assert');
+const sql = fs.readFileSync(__dirname + '/../supabase/v8.8.1-linked-action-deduplication.sql', 'utf8');
+assert(sql.includes('security definer'), 'trigger must compare records consistently under RLS');
+assert(sql.includes('set search_path = pg_catalog, public'), 'security-definer search path must be explicit');
+assert(sql.includes('pg_advisory_xact_lock'), 'concurrent submissions must be serialized');
+assert(sql.includes('new.organization_id::text'), 'duplicate lock must be tenant-scoped');
+assert(sql.includes("r.organization_id = new.organization_id"), 'duplicate search must be tenant-scoped');
+assert(sql.includes("r.module = 'actions'"), 'only corrective actions should be checked');
+assert(sql.includes("'closed', 'cancelled', 'canceled', 'void', 'expired'"), 'terminal actions should not block new work');
+assert(sql.includes('r.id is distinct from new.id'), 'updates must exclude the current record');
+assert(sql.includes('v_old_norm_summary is not distinct from v_norm_summary'), 'unrelated edits to legacy active actions should not be blocked');
+assert(sql.includes('before insert or update of organization_id, module, status, summary, data'), 'trigger must cover inserts and duplicate-signature changes');
+assert(sql.includes("using errcode = '23505'"), 'duplicates should fail with a unique-violation SQLSTATE');
+assert(sql.includes('HINT =') || sql.includes('hint ='), 'duplicate error should guide the user');
+console.log('LINKED ACTION DEDUPLICATION STATIC SMOKE: PASSED (12 assertions)');

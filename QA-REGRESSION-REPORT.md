@@ -34,3 +34,11 @@
 Static analysis cannot prove the live Supabase deployment is fully correct. The live regression list in `PRODUCTION-SETUP.md` must be executed against the actual project after the SQL migration and Edge Function deployment.
 
 The package is therefore a production-targeted V8 release candidate, with the live verification step intentionally left explicit rather than claiming a browser/database test that was not executed from this environment.
+- Import retry regression: passed; partial row failures now preserve the reviewed draft for correction/retry. The guard is static and does not simulate a live Supabase failure.
+
+
+## V8.8.4 addendum — certificate renewal
+
+- `qa/certificate-renewal-workflow.js`: deterministic normalized-key matching and predecessor/successor chain checks.
+- `qa/certificate-duplicate-sql-static-smoke.js`: static guard for candidate organization-scoped uniqueness indexes and safe migration preflight.
+- These are local checks; the SQL candidate has not been run in a real PostgreSQL/Supabase database.

@@ -8,11 +8,17 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/nuhas-logo.jpg">
   <link rel="stylesheet" href="styles.css">
-  <title>HSE360 Platform</title>
+  <title>NUHAS HSE360 Platform</title>
 </head>
 <body>
   <div id="app"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Pinned browser-side extractors; imports fail safely with a clear message if a CDN is unavailable. -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+  <!-- OCR runs in the user's browser; certificate files are not sent to an AI API. -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>

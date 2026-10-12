@@ -1,0 +1,27 @@
+'use strict';
+// Exercises the pure certificate-field/date heuristics without a browser or Supabase.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const source = fs.readFileSync(require('node:path').join(__dirname, '..', 'app.js'), 'utf8');
+const start = source.indexOf('  function certificateDateISO(raw){');
+const end = source.indexOf('  async function extractPdfText(file){', start);
+assert.ok(start >= 0 && end > start, 'Certificate extraction helpers should exist');
+const helperSource = source.slice(start, end).replace(/\n  async function ocrPdfPages[\s\S]*$/, '');
+const context = {};
+vm.runInNewContext(`${helperSource}\nthis.guessCertificateFields=guessCertificateFields; this.certificateDateISO=certificateDateISO; this.validISODate=validISODate;`, context);
+assert.equal(context.certificateDateISO('2026-10-11'), '2026-10-11');
+assert.equal(context.certificateDateISO('31/12/2026'), '2026-12-31');
+assert.equal(context.certificateDateISO('05/06/2026'), '', 'Ambiguous numeric dates must be left for human review');
+assert.equal(context.certificateDateISO('31 Feb 2026'), '');
+const sample = `THIRD PARTY INSPECTION CERTIFICATE\nCertificate No: TPI-ABC-2026-145\nIssued by: Gulf Inspection Services LLC\nIssue Date: 12 Oct 2026\nValid Until: 11 Oct 2027`;
+const result = context.guessCertificateFields(sample, 'EOT_Crane_Certificate.pdf');
+assert.equal(result.number, 'TPI-ABC-2026-145');
+assert.equal(result.issueDate, '2026-10-12');
+assert.equal(result.expiryDate, '2027-10-11');
+assert.match(result.title, /THIRD PARTY INSPECTION CERTIFICATE/i);
+assert.match(result.issuer, /Gulf Inspection Services LLC/i);
+const uncertain = context.guessCertificateFields('A scanned certificate with no labelled dates', 'scan.pdf');
+assert.equal(uncertain.issueDate, '');
+assert.equal(uncertain.expiryDate, '');
+console.log('CERTIFICATE READER SMOKE: PASSED');

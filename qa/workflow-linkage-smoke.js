@@ -1,0 +1,12 @@
+const fs = require('fs');
+const assert = require('assert');
+const app = fs.readFileSync(__dirname + '/../app.js', 'utf8');
+assert(app.includes("x.module==='actions'&&(x.data?.source_record_id===r.id||x.data?.related_reference===r.reference_no)"), 'source detail should list linked actions by source ID or reference');
+assert(app.includes('data-raise-action="${r.id}"'), 'eligible source records should expose create-action control');
+assert(app.includes("p_module:'actions'"), 'linked workflow must save to the corrective actions module');
+assert(app.includes('source_record_id:source.id'), 'action must retain source record ID');
+assert(app.includes('related_reference:source.reference_no'), 'action must retain source reference');
+assert(app.includes("if(!summary||!owner||!due)"), 'action owner, due date and summary must be required');
+assert(app.includes("if(due<today())"), 'past due dates must be rejected');
+assert(app.includes("if(!can('actions','create'))"), "action creation must check the active user's create permission");
+console.log('LINKED ACTION WORKFLOW SMOKE: PASSED');
