@@ -3,7 +3,7 @@ const cp = require('child_process');
 const root = require('path').resolve(__dirname, '..');
 const required = [
   'index.html','app.js','styles.css','config.js','manifest.webmanifest','assets/nuhas-logo.jpg',
-  'supabase/v8-multitenant.sql','supabase/v8.6-enhancements.sql','supabase/functions/admin-reset/index.ts','qa/import-parser-smoke.js','qa/import-retry-regression.js','qa/certificate-reader-smoke.js','qa/certificate-attachment-workflow.js','qa/certificate-renewal-workflow.js','qa/certificate-duplicate-sql-static-smoke.js','qa/compliance-renewal-reminders.js','supabase/v8.8.4-certificate-duplicate-guard.sql','README.md','PRODUCTION-SETUP.md'
+  'supabase/v8-multitenant.sql','supabase/v8.6-enhancements.sql','supabase/functions/admin-reset/index.ts','qa/import-parser-smoke.js','qa/import-retry-regression.js','qa/certificate-reader-smoke.js','qa/certificate-attachment-workflow.js','qa/certificate-renewal-workflow.js','qa/certificate-duplicate-sql-static-smoke.js','qa/compliance-renewal-reminders.js','supabase/v8.8.4-certificate-duplicate-guard.sql','V8.8.6-CHANGELOG.md','V8.8.6-LOCAL-QA-REPORT.md','README.md','PRODUCTION-SETUP.md'
 ];
 let failed = false;
 for (const f of required) {

@@ -1,0 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+const app = fs.readFileSync(path.join(__dirname, '..', 'app.js'), 'utf8');
+const start = app.indexOf('  async function forgot(){');
+const end = app.indexOf('\n  function renderPasswordChange', start);
+assert(start >= 0 && end > start, 'forgot() handler must exist');
+const fn = app.slice(start, end);
+assert(fn.includes('if(chk.data)'), 'reset email must only be requested for registered recovery email');
+assert(fn.includes('sb.auth.resetPasswordForEmail(e'), 'registered address should use Supabase recovery');
+assert(!fn.includes('No recovery email is registered'), 'do not disclose whether address is registered');
+assert(fn.includes('If this address is registered for account recovery'), 'response should be generic');
+assert(fn.includes('Avoid account/recovery-email enumeration'), 'privacy rationale should be documented');
+assert(fn.includes('if(chk.error)'), 'backend lookup errors must be handled');
+console.log('PASSWORD RECOVERY PRIVACY SMOKE: PASSED (6 assertions)');
