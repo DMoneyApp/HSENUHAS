@@ -70,8 +70,13 @@ let model = context.importRowModel(['31/02/2026','CNC Rod Area','Test record'],0
 assert.equal(model.event_date, '');
 assert.match(context.importRowIssues(model,2).join(' '), /Date .*not valid/i);
 model = context.importRowModel(['','CNC Rod Area','Test record'],0,'observations');
+assert.equal(model.event_date, '');
+assert.match(context.importRowIssues(model,2).join(' '), /Date is blank/i);
+context.importDraft.useTodayForBlankDates = true;
+model = context.importRowModel(['','CNC Rod Area','Test record'],0,'observations');
 assert.equal(model.event_date, '2026-10-11');
 assert.equal(context.importRowIssues(model,2).length, 0);
+context.importDraft.useTodayForBlankDates = false;
 model = context.importRowModel(['11/10/2026','CNC Rod Area','Test record'],0,'observations');
 assert.equal(model.event_date, '2026-10-11');
 assert.equal(context.importRowIssues(model,2).length, 0);

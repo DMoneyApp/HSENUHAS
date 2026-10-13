@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, '..');
 const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
 const checks = [
-  ['workspace brand includes logo and active workspace label', app.includes('workspace-logo') && app.includes('ACTIVE WORKSPACE')],
+  ['workspace brand includes logo and clear company workspace label', app.includes('workspace-logo') && app.includes('COMPANY WORKSPACE') && app.includes('workspace-name')],
   ['logo upload has image type and 2 MB guard', app.includes("!['image/png','image/jpeg','image/webp'].includes(file.type)") && app.includes('2*1024*1024')],
   ['failed profile update attempts to clean unlinked new logo', app.includes("remove([uploadedPath])") && app.includes('previous logo is unchanged')],
   ['dashboard offers quick capture controls', app.includes('hse-quick-actions') && app.includes('data-new="near_miss"') && app.includes('data-new="fire_equipment"')],
@@ -21,8 +21,8 @@ const checks = [
   ['notification actions distinguish dismissal from deleting records', app.includes('Clear the current notification list? This dismisses alerts only')],
   ['JSA picker is searchable and multi-select', app.includes('jsa-search-') && app.includes("input[type=checkbox]:checked") && app.includes('Select multiple')],
   ['JSA selection can fill permit scope, hazards and controls', app.includes("append('work_scope',joinActivities)") && app.includes("append('hazards',joinHazards)") && app.includes("append('controls',joinControls)")],
-  ['permits are draft-first and allow incomplete drafts', app.includes("existing?.status||(t==='permits'?'draft':'open')") && app.includes('Drafts may remain incomplete')],
-  ['incomplete permits cannot bypass authorization-specific controls', app.includes("if(status==='approved')") && app.includes('Permit cannot be approved')],
+  ['permits are draft-first and allow incomplete drafts', app.includes("formStatus=transition?.status||(existing?.status||(t==='permits'?'draft':'open'))") && app.includes('Drafts may remain incomplete')],
+  ['incomplete permits cannot bypass authorization-specific controls', app.includes("if(status==='approved')") && app.includes('Permit cannot be authorised') && app.includes('Use the assigned HSE Authorise action')],
   ['navigation, workspace, report and draft controls have responsive styles', css.includes('.workspace-switcher') && css.includes('.hse-quick-actions') && css.includes('.report-period-presets') && css.includes('.form-disclosure')],
 ];
 let failed = 0;

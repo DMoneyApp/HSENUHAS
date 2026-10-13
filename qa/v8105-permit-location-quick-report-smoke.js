@@ -13,9 +13,9 @@ const checks=[
  ['JSA templates are classified for all three permit classes',/function jsaPermitCategory/.test(s)&&/Hot Work/.test(s)&&/Critical Work/.test(s)&&/General Work/.test(s)],
  ['Permit has separate receiver department and HSE reviewer routing fields',/receiver_department','Receiving department'/.test(s)&&/hse_reviewer','HSE reviewer'/.test(s)],
  ['Permit has separate issuer, receiver and HSE signature fields',/issuer_signature_name/.test(s)&&/receiver_signature_name/.test(s)&&/hse_signature_name/.test(s)],
- ['Sign action captures current profile name and local timestamp',/data-permit-sign/.test(s)&&/nowLocalInput\(\)/.test(s)],
+ ['Permit approval actions record the active profile and local timestamp',/data-permit-workflow/.test(s)&&/preparePermitTransition/.test(s)&&/nowLocalInput\(\)/.test(s)],
  ['Permit authorisation requires three distinct signers',/new Set\(signerNames\)\.size!==3/.test(s)],
- ['Permit routing clearly states final backend integration is pending',/Profile-based routing and notifications are reserved for final backend integration/.test(s)],
+ ['Permit routing clearly labels trial identity/signature limitations',/assignments match profile display names/.test(s)&&/not cryptographically signed or server-enforced yet/.test(s)],
  ['Daily cleaning, PPM, inspection and material movement JSA starters exist',/routine-cleaning/.test(s)&&/routine-lubrication-ppm/.test(s)&&/routine-inspection/.test(s)&&/routine-material-transfer/.test(s)],
  ['Locations and workflow do not require Supabase migration edits',true]
 ];
