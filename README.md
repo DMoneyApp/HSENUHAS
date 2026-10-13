@@ -1,6 +1,22 @@
-# Current local cumulative build — V8.8.10
+# NUHAS HSE360 — V8.10.6 Local Cumulative Candidate
 
-V8.8.10 is the current local cumulative candidate, built from the uploaded V8.8.8 master through the V8.8.9 usability/reporting pass and V8.8.10 founder-credit correction. It includes dashboard quick capture, clearer workspace branding, reporting periods and register scoping, ISO-inspired document metadata/print layouts, searchable multi-select JSA starter reuse in permits, draft-first permit entry, notification badges, and accessible founder/LinkedIn attribution. See `V8.8.9-CHANGELOG.md`, `V8.8.10-CHANGELOG.md`, and `V8.8.10-LOCAL-QA-REPORT.md`. Not deployed or live-verified.
+**Current checkpoint:** added role-specific training requirements and evidence matching, audit finding → corrective-action linkage review, major/critical case closure gating and traceable waste movement checks in both form entry and CSV imports.
+
+**Release status:** local cumulative candidate. `node --check app.js` and all 37 local QA scripts pass. Supabase configuration/schema/policies/storage, GitHub and production data were not changed. Authenticated browser E2E and live integration tests remain pending. See `V8.10.3-CHANGELOG.md`, `V8.10.3-LOCAL-QA-REPORT.md`, and `V8.10.3-FEATURE-COMPLETION-AND-LIMITATIONS.md`.
+
+# Current local cumulative build — V8.10.3
+
+V8.10.3 carries forward the V8.10.2 mobile global search, recoverable form drafts, weekly/monthly fire checklist templates, reusable JSA selection, permit controls, corrective-action workflows, compliance reminders, controlled reports, imports and notification navigation. This increment adds the explicit role-based training matrix; audit findings without linked actions; closure gating for newly closed major/critical incidents and accidents; and traceability preflight for completed waste movements (including CSV import). Full details and constraints are recorded in the V8.10.3 release files. Not deployed or live-verified.
+
+---
+
+# NUHAS HSE360 — V8.10.2 Local Cumulative Candidate
+
+**Latest local checkpoint:** mobile access to cross-register search, accessible search expansion and dismissal, clear-search controls, and safer no-match keyboard behavior, carried on top of recoverable same-tab form drafts, weekly/monthly fire checklist starters, JSA reuse, reports and workflow controls. This is a local release candidate; it has not been deployed or live-verified.
+
+# Current local cumulative build — V8.10.2
+
+V8.10.2 continues the cumulative V8.10.1 master. It makes global record search available below 560 px, adds accessible open/close and clear behavior, handles Escape/outside clicks, and avoids redirecting unmatched searches to the unrelated Observations register. It retains V8.10.1 cross-register search, V8.10.0 session-only draft recovery and checklist-first weekly/monthly fire-equipment inspection forms, plus the prior HSE360 workflows. The ten product advancements and research references are documented in `PRODUCT-ADVANCEMENTS-10.md`; release limits are in `V8.10.2-CHANGELOG.md` and `V8.10.2-LOCAL-QA-REPORT.md`. Not deployed or live-verified.
 
 V8.8.6 improves the certificate reader after a user-reported extraction issue: selectable PDF content is reconstructed by visual reading order, OCR runs at a higher render scale with sparse-layout detection and a low-confidence alternate pass, obvious OCR noise is rejected for issuer suggestions, and award-style documents can store a separate certificate holder/recipient. Numeric dates default to DD/MM/YYYY for UAE use and must still be checked against the original. See `V8.8.6-CHANGELOG.md` and `V8.8.6-LOCAL-QA-REPORT.md`. The exact source PDF from the reported screenshot was not provided, and no live browser/Supabase test or GitHub deployment is claimed.
 

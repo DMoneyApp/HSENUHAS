@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const app=fs.readFileSync(require('node:path').join(__dirname,'..','app.js'),'utf8');
+assert.match(app,/Weekly fire extinguisher visual check/,'weekly template should exist');
+assert.match(app,/Monthly detailed fire equipment inspection/,'monthly template should exist');
+assert.match(app,/checklist points selected\. Record actual results/,'template must explain field review');
+assert.match(app,/opts=\['Select result','OK','NOT OK','N\/A'\]/,'inspection checks must not default to OK');
+assert.match(app,/Complete the selected fire checklist before submitting/,'submitted checklists must be complete');
+assert.match(app,/A NOT OK item or overall result requires Follow-up required = Yes/,'failed check must trigger follow-up');
+assert.match(app,/d\.checklist_template_name=template\.name;d\.checklist_items=template\.fields/,'saved record must identify the applied checklist');
+assert.match(app,/checklist_template_name\|\|'Fire equipment inspection checklist'/,'printed report must identify template');
+console.log('FIRE CHECKLIST TEMPLATE SMOKE: PASSED (8 assertions)');

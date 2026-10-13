@@ -1,8 +1,8 @@
 # NUHAS HSE360 — Working Master Checkpoint
 
-Updated: 2026-10-12
-Current local candidate: V8.8.10 — Usability, controlled reports, draft-first workflows and founder-credit correction
-Baseline: uploaded and integrity-checked `NUHAS-HSE360-V8.8.8-CUMULATIVE-MASTER.zip`; all previous files preserved, plus local improvements and QA/reporting documents.
+Updated: 2026-10-13
+Current local candidate: V8.10.2 — Mobile Global Search & Search Accuracy
+Cumulative lineage: integrity-checked V8.8.8 source → V8.8.9/8.8.10 → V8.10.0 → V8.10.1 → V8.10.2. Current source of truth for continuation is the full V8.10.2 working directory and `NUHAS-HSE360-V8.10.2-CUMULATIVE-MASTER.zip`; older checkpoints below are historical. All work remains local and un-deployed.
 
 ## Permanent workflow rule
 
@@ -58,3 +58,29 @@ No production database migration or GitHub write was performed.
 - Attribution appears in the main application footer (including mobile layout), sidebar, login and workspace-access/onboarding screens.
 - Added `qa/v8810-founder-credit-smoke.js`; all 20 QA scripts pass and `node --check app.js` passes.
 - Candidate ZIP is local only; no GitHub push, Pages deployment, Supabase changes or live browser test.
+
+
+## V8.10.0 previous checkpoint — 12 October 2026
+
+- Previous local version: V8.10.0 — Field Continuity & Inspection Templates.
+- Added tab-session draft autosave/recovery scoped by active organization and user, with explicit restore/discard and dashboard resume. Attachments are excluded; no cross-device sync or backend draft persistence.
+- Added weekly extinguisher visual, monthly detailed fire equipment, and monthly hose-reel/hydrant checklist starters. Checklist statuses start unselected; submitted checklist requires actual result for every selected point, overall outcome, and follow-up/remarks for NOT OK.
+- Added `PRODUCT-ADVANCEMENTS-10.md`. Existing cumulative capabilities retained: quick capture, reusable JSA templates, permit checks, linked CAPA, compliance renewal watch, document import/OCR review, controlled reports/exports and notification navigation.
+- `node --check app.js` PASS; 23/23 QA scripts PASS; manifest and ZIP integrity verified during packaging.
+- Browser E2E could not complete because Chromium navigation to localhost and file URLs is blocked by the environment; no live Supabase or production verification was performed.
+
+
+## V8.10.1 checkpoint — 13 October 2026
+- Added accessible cross-register global search for loaded records and keyboard selection; static search checks and cumulative QA passed 24/24.
+
+## V8.10.2 checkpoint — 13 October 2026
+- Added a visible search-toggle entry point at mobile widths, open/close accessibility state, clear control, escape/outside dismissal and no-match Enter correction.
+- `qa/global-search-command-palette-smoke.js`: 10/10 checks pass; `qa/mobile-global-search-smoke.js`: 12/12 checks pass. Full cumulative QA report: `V8.10.2-LOCAL-QA-REPORT.md`.
+- Browser E2E and live backend testing remain unverified. No GitHub push/deployment, Supabase migration or production data change occurred.
+
+## V8.10.3 checkpoint — 13 October 2026
+- Implemented role-based training requirements with explicit scope, mandatory/conditional strength, exact employee/course code matching, expiry review and CSV export.
+- Added audit finding linkage review, serious-case corrective-action closure gate, and shared waste movement traceability preflight for manual form and CSV import.
+- Full local QA suite: 37/37 scripts PASS; `node --check app.js` PASS.
+- Supabase, config, database migrations, production data, GitHub and deployment remained untouched; authenticated browser E2E is still pending.
+- Current checkpoint/package documentation: `V8.10.3-WORKING-CHECKPOINT.md`, `V8.10.3-FEATURE-COMPLETION-AND-LIMITATIONS.md` and `V8.10.3-LOCAL-QA-REPORT.md`.

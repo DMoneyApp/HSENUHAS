@@ -1,3 +1,7 @@
+## Previous local checkpoint — V8.10.0
+
+Cumulative master includes company-saved reusable JSA templates, dashboard missing-data handling, recoverable session-only form drafts, and weekly/monthly fire checklist starters. Static QA passes (23/23); browser navigation is blocked by the execution environment, and live Supabase authorization, tenant isolation, storage policy validation and deployment remain release gates. Do not treat this as production-ready.
+
 # NUHAS HSE360 V8.8.6 — Release readiness and remaining work
 
 **Package type:** Consolidated local release candidate. This is the latest packaged local source, not a claim of production verification.
@@ -59,3 +63,10 @@ Production readiness depends on testing against the actual Supabase schema, stor
 
 ## V8.8.7 update
 Added a manual CSV export for the dashboard compliance renewal watch. It uses currently loaded records and does not send scheduled reminders. Browser download testing and live Supabase authorization testing remain pending.
+
+
+## V8.10.0 additional acceptance items
+
+- Exercise session draft autosave/restore/discard on target browsers and confirm behavior when a tab/session ends; drafts are not authoritative records and do not sync across devices.
+- Perform real weekly/monthly fire equipment inspections and verify checklist defaults, failed-item follow-up requirements and print/PDF output.
+- Review `PRODUCT-ADVANCEMENTS-10.md` for the ten adopted product patterns and known limitations.

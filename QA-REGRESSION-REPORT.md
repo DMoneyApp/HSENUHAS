@@ -66,3 +66,41 @@ The package is therefore a production-targeted V8 release candidate, with the li
 - LinkedIn profile `https://www.linkedin.com/in/odanisho/` is a clickable external link with safe `rel` attributes.
 - Static founder-credit smoke test: 7/7 passed; complete QA suite: 20/20 passed; JavaScript syntax passed.
 - Not browser-tested or deployed. See `V8.8.10-LOCAL-QA-REPORT.md`.
+
+
+## V8.10.0 cumulative regression update — 12 October 2026
+
+- `node --check app.js`: PASS.
+- `qa/session-draft-recovery-smoke.js`: PASS (8 source assertions).
+- `qa/fire-checklist-template-smoke.js`: PASS (8 source assertions).
+- Entire `qa/*.js` suite: 23/23 PASS.
+- Browser smoke attempt: NOT RUN to completion; Chromium reported `ERR_BLOCKED_BY_ADMINISTRATOR` for localhost and file URLs. It is not counted as passed.
+- Live Supabase/database/RLS/Storage, generated PDF visual review and production deployment: NOT RUN.
+
+
+## V8.10.1 regression update — 13 October 2026
+
+- Added cross-register global search suggestions, permission-filtered at the UI layer, keyboard navigation, outside-click dismissal and dark/responsive styling.
+- `qa/global-search-command-palette-smoke.js`: 10/10 checks pass.
+- Full cumulative local suite: 24/24 scripts pass.
+- Authenticated browser and live Supabase validation remain pending.
+
+
+## V8.10.2 regression update — 13 October 2026
+
+- Added mobile global-search entry point and clear control where the previous search input was hidden.
+- Escape/outside-click/result selection dismiss the mobile search; accessible label/state are kept in sync.
+- Pressing Enter for a no-match query no longer opens Observations unexpectedly.
+- `qa/global-search-command-palette-smoke.js`: 10/10 PASS.
+- `qa/mobile-global-search-smoke.js`: 12/12 PASS.
+- Full suite and package integrity results are recorded in `V8.10.2-LOCAL-QA-REPORT.md`.
+- Mobile/desktop browser E2E and live Supabase checks remain pending.
+
+## V8.10.3 regression update — 13 October 2026
+
+- `qa/role-training-requirement-matrix.js`: PASS (course/role scope, duplicate definitions, expiry derivation, exact evidence matching and export/wiring guards).
+- `qa/audit-action-linkage.js`: PASS (linked/unlinked audit findings and filter wiring).
+- `qa/serious-case-closure-linkage.js`: PASS (major/critical case closure requires an actual corrective action, while pre-existing closed cases are not newly blocked).
+- `qa/waste-traceability-workflow.js`: PASS (movement date, destination, vendor, evidence, hazardous manifest, storage location, form/import preflight and draft exception).
+- Full cumulative `qa/*.js` suite: 37/37 PASS; `node --check app.js`: PASS.
+- These results are local deterministic tests. Supabase, RLS/storage, authentication, browser E2E and production deployment remain unverified and unchanged.

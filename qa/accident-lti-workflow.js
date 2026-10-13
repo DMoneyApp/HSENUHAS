@@ -1,0 +1,20 @@
+const fs=require('fs');const assert=require('assert');const vm=require('vm');
+const app=fs.readFileSync(__dirname+'/../app.js','utf8');
+function getFunction(name){const m=app.match(new RegExp(`^  function ${name}\\([^\\n]*\\)\\{[\\s\\S]*?^  \\}`,'m'));assert(m,`function ${name} should exist`);return m[0]}
+const source=[getFunction('complianceDaysRemaining'),getFunction('accidentWorkflowIssues'),getFunction('seriousCaseActionLinkGap'),getFunction('recordQualityMatches')].join('\n')+'\nthis.api={accidentWorkflowIssues,seriousCaseActionLinkGap,recordQualityMatches};';
+const action={id:'a1',module:'actions',reference_no:'CAR-01',data:{source_record_id:'inj1',related_reference:'ACC-01'}};
+const context={state:{records:[]},today:()=> '2026-10-13'};vm.runInNewContext(source,context);const api=context.api;
+const complete={id:'inj1',module:'accidents',reference_no:'ACC-01',event_date:'2026-09-01',status:'closed',data:{severity:'Major',lti:'Yes',injury_type:'Crush injury',days_lost:4,medical_treatment:'Hospitalisation',return_to_work:'2026-10-01',investigation_status:'Completed',investigator:'HSE Manager',root_cause:'Failure of load restraint',evidence_reference:'INV-04',authority_notification:'Submitted',notification_reference:'AUTH-44'}};
+assert.deepStrictEqual(Array.from(api.accidentWorkflowIssues(complete)),[],'complete major LTI with chronology and notification details has no record-quality gaps');
+const gaps=api.accidentWorkflowIssues({event_date:'2026-10-10',status:'closed',data:{severity:'Critical',lti:'To assess',medical_treatment:'Not classified',days_lost:0,return_to_work:'2026-10-01',investigation_status:'In progress',authority_notification:'Required'}});
+for(const k of ['lti_classification_missing','treatment_missing','return_to_work_before_event','investigation_open','notification_reference_missing'])assert(gaps.includes(k),`accident register should flag ${k}`);
+assert(api.accidentWorkflowIssues({data:{severity:'Not classified',lti:'No',medical_treatment:'Not classified'}}).includes('severity_missing'),'unclassified severity is flagged');
+assert(api.accidentWorkflowIssues({status:'closed',data:{severity:'Minor',lti:'Yes',days_lost:0,medical_treatment:'First Aid'}}).includes('lti_days_missing'));
+assert(api.accidentWorkflowIssues({status:'closed',data:{severity:'Major',lti:'Yes',days_lost:2,medical_treatment:'Medical Treatment',investigation_status:'Completed',root_cause:'Root cause',evidence_reference:'INV'}}).includes('investigator_missing'));
+assert.strictEqual(api.seriousCaseActionLinkGap({id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},[]),true,'major / critical accident missing linked action is flagged');
+assert.strictEqual(api.seriousCaseActionLinkGap({id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},[action]),false,'linked corrective action is recognised');
+assert.strictEqual(api.recordQualityMatches('accidents',{id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},'accident_action_gap'),true,'action-gap filter is wired');
+assert(app.includes("accidents:[['severity','Case severity','select','Not classified" )&&app.includes("['lti','Lost-time injury (LTI)?','select','To assess|No|Yes']"),'accident form defaults conservatively');
+assert(app.includes("accidents:{title:'Injury details, investigation, evidence & notification"),'detailed injury information is collapsed behind an optional section');
+assert(app.includes("if(['incidents','accidents'].includes(t))"),'accident and incident investigation gates share validation');
+console.log('ACCIDENT / LTI WORKFLOW: PASSED (13 logic scenarios plus 4 wiring/default assertions)');

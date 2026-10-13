@@ -1,0 +1,21 @@
+const fs=require('fs');const assert=require('assert');const vm=require('vm');
+const app=fs.readFileSync(__dirname+'/../app.js','utf8');
+function getFunction(name){const m=app.match(new RegExp(`^  function ${name}\\([^\\n]*\\)\\{[\\s\\S]*?^  \\}`,'m'));assert(m,`function ${name} should exist`);return m[0]}
+const source=[getFunction('complianceDaysRemaining'),getFunction('legalComplianceIssues'),getFunction('documentControlIssues')].join('\n')+'\nthis.api={legalComplianceIssues,documentControlIssues};';
+const context={today:()=> '2026-10-13'};vm.runInNewContext(source,context);const api=context.api;
+const clean={data:{requirement:'Environmental permit conditions',authority:'Competent authority',reference_no:'PERMIT-123 / Condition 4',applicability:'Applicable',compliance_status:'Compliant',last_review_date:'2026-09-01',next_review:'2027-09-01',reviewed_by:'HSE Manager',evidence:'Monthly monitoring records',responsible:'Environment Officer'}};
+assert.deepStrictEqual(Array.from(api.legalComplianceIssues(clean,'2026-10-13')),[],'complete legal register row has no review gaps');
+const gaps=api.legalComplianceIssues({data:{requirement:'Permit condition',applicability:'Applicable',compliance_status:'Compliant',next_review:'2026-01-01'}},'2026-10-13');
+for(const k of ['missing_reference','missing_authority','compliant_missing_evidence','review_due_overdue'])assert(gaps.includes(k),`legal register should flag ${k}`);
+assert(api.legalComplianceIssues({data:{requirement:'Permit condition',applicability:'Applicable',compliance_status:'Not Assessed'}}).includes('missing_review_due'),'applicable rows without a next review date are flagged');
+assert(api.legalComplianceIssues({data:{requirement:'Non-applicable clause',reference_no:'XYZ',applicability:'Not Applicable'}}).includes('missing_applicability_reason'),'not-applicable requires an auditable reason');
+assert(api.legalComplianceIssues({data:{requirement:'Permit',reference_no:'A1',authority:'Authority',applicability:'Applicable',compliance_status:'Partially Compliant',next_review:'2027-01-01'}}).includes('followup_owner_missing'),'partial compliance needs a responsible follow-up owner');
+assert(api.legalComplianceIssues({data:{requirement:'Permit',reference_no:'A1',authority:'Authority',applicability:'Applicable',compliance_status:'Not Assessed',next_review:'2027-01-01'}}).includes('status_not_assessed'));
+assert(api.legalComplianceIssues({data:{requirement:'Permit',reference_no:'A1',authority:'Authority',applicability:'Applicable',compliance_status:'Compliant',last_review_date:'2026-10-10',next_review:'2026-10-01',evidence:'REP-1'}}).includes('review_due_before_last_review'));
+const doc={data:{approval_status:'Approved',document_no:'WI-HSE-01',revision:'02',owner:'HSE',reviewed_by:'Reviewer',approved_by:'Approver',effective_date:'2026-01-01',next_review:'2027-01-01',acknowledgement_required:'Yes'}};
+assert(api.documentControlIssues(doc,'2026-10-13').includes('missing_acknowledgement_evidence'),'approved document requiring acknowledgement but missing its evidence is flagged');
+doc.data.acknowledgement_reference='ACK-REG-01';assert(!api.documentControlIssues(doc,'2026-10-13').includes('missing_acknowledgement_evidence'));
+assert(app.includes("['applicability','Applicability','select','Under Review|Applicable|Not Applicable']"),'applicability should default conservatively to Under Review');
+assert(app.includes("['compliance_status','Compliance status','select','Not Assessed|Compliant|Partially Compliant|Non-Compliant']"),'legal compliance must not default to Compliant');
+assert(app.includes("action('Compliant without evidence reference'" ) && app.includes("action('Acknowledgement evidence missing'"),'legal and document review controls are visible');
+console.log('LEGAL & DOCUMENT CONTROL WORKFLOW: PASSED (14 review scenarios plus 3 wiring/default assertions)');

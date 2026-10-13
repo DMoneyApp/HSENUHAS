@@ -1,0 +1,12 @@
+'use strict';
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const app = fs.readFileSync(require('node:path').join(__dirname, '..', 'app.js'), 'utf8');
+assert.match(app, /function savedJsaTemplates\(\)/, 'saved company JSA templates must be derived from persisted company records');
+assert.match(app, /r\.module==='risk'&&r\.data\?\.reusable_template===true/, 'only explicitly flagged risk records may enter the reusable JSA library');
+assert.match(app, /catalog=\[\.\.\.JSA_LIBRARY,\.\.\.savedJsaTemplates\(\)\]/, 'picker must combine starter and company-saved templates');
+assert.match(app, /data-reusable_template=|reusable_template=|reusable_template\)\s*\{/, 'template flag should be handled by save workflow');
+assert.match(app, /To save a reusable JSA, enter a template name, activity, hazard and at least one control/, 'incomplete JSA template must not be saved');
+assert.match(app, /d\.reusable_template=!!modal\.querySelector\('#f_reusable_template'\)\?\.checked/, 'template selection must be persisted as a boolean');
+assert.match(app, /Verify and edit all hazards, controls and risk scores for this specific job/, 'reuse must warn users to validate the site-specific assessment');
+console.log('JSA TEMPLATE REUSE SMOKE: PASSED (7 source assertions)');

@@ -1,7 +1,7 @@
 # NUHAS HSE360 — Repository and Security Audit Checkpoint
 
 Date: 2026-10-12
-Baseline inspected: uploaded V8.8.8 cumulative ZIP; current local cumulative candidate V8.8.10. Remote checks are read-only, no repository checkout/write or deployment was performed.
+Baseline inspected: uploaded V8.8.8 cumulative ZIP; current local cumulative candidate V8.10.0 (cumulative through V8.8.9 and V8.9.0). Remote checks are read-only; no repository write or deployment was performed.
 
 ## Access and provenance
 - The local archive extracts and passes ZIP integrity checks.
@@ -12,7 +12,7 @@ Baseline inspected: uploaded V8.8.8 cumulative ZIP; current local cumulative can
 ## Local code findings
 - `app.js` includes Supabase Auth login through `login_with_username`, sign-up, recovery, organization create/join, record CRUD through RPCs, company switching, audit-log display, and browser-persistent notification fallback.
 - SQL files define a multi-tenant model, RLS policies, organization membership functions, audited HSE record RPCs, private `hse-attachments` storage, and candidate CAPA/permit/certificate triggers.
-- Historical README/version headings were stale in earlier snapshots. The current local README and VERSION.txt identify the V8.8.10 cumulative candidate.
+- Historical README/version headings were stale in earlier snapshots. The current local README and VERSION.txt identify the V8.10.0 cumulative candidate.
 - Password recovery previously displayed a distinct message when an email was not registered, enabling account/recovery-email enumeration. V8.8.8 now returns a generic user-facing result and only calls Supabase reset email when `recovery_email_registered` confirms a match. This reduces UI disclosure but does not remove timing-side channels or prove the RPC is safe against abuse.
 
 ## Security items requiring staging/live verification
@@ -25,11 +25,11 @@ Baseline inspected: uploaded V8.8.8 cumulative ZIP; current local cumulative can
 - Run authenticated browser flows. Prior headless Chromium attempt timed out; browser end-to-end is not passed.
 
 ## Scope gaps against the master brief
-The existing app has many modules represented in a shared record engine, but the presence of a module or navigation item does not prove the full business workflow is implemented. Still to verify/complete include JSA template library/version approval; all three permit categories and their critical subtype-specific controls; accurate period-filtered dashboard analytics and KPI definitions; controlled PDF/print report templates; complete training/competency matrix; scheduled background reminders; DOCX/XLSX/PDF/CSV/TXT import coverage and per-format tests; offline conflict-safe drafts; and full mobile/browser acceptance tests.
+The existing app has many modules represented in a shared record engine, but the presence of a module or navigation item does not prove the full business workflow is implemented. Still to verify/complete include JSA template library/version approval; all three permit categories and their critical subtype-specific controls; accurate period-filtered dashboard analytics and KPI definitions; controlled PDF/print report templates; complete training/competency matrix; scheduled background reminders; DOCX/XLSX/PDF/CSV/TXT import coverage and per-format tests; robust cross-device offline synchronization/conflict handling (V8.10.0 adds session-only same-tab drafts, not full offline mode); and full mobile/browser acceptance tests.
 
 ## Test results for this checkpoint
 - `node --check app.js`: PASS on the final local candidate.
-- All 20 `qa/*.js` scripts: PASS on the extracted V8.8.10 candidate; see `V8.8.10-LOCAL-QA-REPORT.md`.
+- All 23 `qa/*.js` scripts: PASS on the V8.10.0 candidate; see `V8.10.0-LOCAL-QA-REPORT.md`.
 - Tests are mostly deterministic helper and static source checks. They are not authenticated integration, live Supabase, cross-tenant, or browser E2E tests.
 
 ## Deployment boundary
@@ -44,3 +44,11 @@ No GitHub push, live Supabase migration, data reset, or production data modifica
 ## V8.8.10 reconciliation note
 
 GitHub main identifies as V8.8.5 while the current local cumulative release is V8.8.10. The live Pages source could not be confirmed, and no GitHub write/deployment or production database mutation was performed. Local changes remain unshipped.
+
+
+## V8.10.0 field-continuity addendum
+
+- Added session-only, user/company-scoped form draft recovery. It does not store attachments, sync across devices, or provide a server-side authoritative draft. Session storage is not encrypted; use on trusted devices only.
+- Added weekly and monthly fire-equipment checklist starters. New status controls default to “Select result”; failure cases require follow-up and remarks before a non-draft checklist can be submitted.
+- Added `PRODUCT-ADVANCEMENTS-10.md` documenting ten cumulative product patterns and source references.
+- Browser E2E could not be completed: this environment blocked both loopback HTTP and local-file Chromium navigation with `ERR_BLOCKED_BY_ADMINISTRATOR`. Therefore, no browser workflow is reported as passed.

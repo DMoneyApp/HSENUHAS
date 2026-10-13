@@ -1,29 +1,65 @@
-# HSE360 product-pattern research and adoption map
+# NUHAS HSE360 — Product UX Inspiration and Adoption Map
 
-Research date: 12 October 2026
-Purpose: learn from established HSE/field-operations UX patterns. This is not a claim of partnership or certification.
+**Current consolidated adoption map:** `PRODUCT-ADVANCEMENTS-10.md` lists ten patterns and their current implementation/pending validation status.
 
-## Patterns to adopt for NUHAS
+We study established HSE/workplace products for proven interaction patterns. This is not a claim that their full capabilities are reproduced, and no proprietary source code, branding or protected UI is copied.
 
-| Product researched | Useful pattern | HSE360 direction | State in V8.8.9 |
-|---|---|---|---|
-| SafetyCulture | Mobile-ready checklists, reusable inspection templates, actions raised from findings and inspection/report export | Consistent checklist item outcomes, notes/evidence, linked actions and quick PDF/print output | Partially represented in existing inspections/linked CAPA; fire-equipment print format improved locally; fuller configurable checklist builder remains pending |
-| VelocityEHS | Incident/near-miss field capture tied to corrective actions, reporting/trends, mobile workflow | Quick-create buttons, structured reporting and connect findings to owned/due-dated CAPA | Quick captures and existing linked-action flow are present locally; mobile/offline performance and live end-to-end link testing pending |
-| Intelex | Permit-to-work with hazard/risk assessment, document control, approvals and auditability | Keep exactly three permit classes, reuse JSA content, distinguish Draft / Pending / Authorised states, control document number/revision/issue date | JSA reuse from permit and optional document-control print metadata added locally; live back-end lifecycle guard and controlled approval remain unverified |
-| MaintainX | Simple front-line request capture, photo attachments, QR access and offline work capture | Reduce typing at source; support attachments; consider QR shortcuts and offline drafts when conflict-safe sync is designed | Dashboard quick-capture controls and optional fields added locally; QR and offline sync remain future work |
+## SafetyCulture — inspections, templates and follow-up
 
-## Research sources
+Public references:
+- https://public-library.safetyculture.io/products/safetyculture-sample-inspection-checklist-vtmw7p2dflh8aazl
+- https://safetyculture.com/platform/
+- https://help.safetyculture.com/en-US/005883/
 
-- SafetyCulture inspections/checklists and reporting: https://safetyculture.com/inspection-software/ and https://safetyculture.com/checklists/
-- SafetyCulture Job Safety Analysis: https://safetyculture.com/topics/job-safety-analysis/
-- VelocityEHS EHS software and incident management: https://www.ehs.com/solutions/ehs-management-software/ and https://www.ehs.com/solutions/incident-management-software/
-- Intelex EHSQ software: https://www.intelex.com/products/ehs-software/
-- MaintainX mobile/offline and work-request documentation: https://help.getmaintainx.com/ and https://www.getmaintainx.com/
+Adopted or planned patterns:
+- Repeatable checklist templates with clear answer choices.
+- Capture notes, media and follow-up actions at the finding level.
+- Provide a report immediately after completing an inspection, while retaining later export options.
+- Make corrective action traceability part of the inspection lifecycle.
 
-## Implementation principles
+HSE360 status: report/print support and source-linked actions exist in local code; a full configurable checklist builder and scheduled inspection engine remain pending.
 
-- Borrow interaction patterns, not other products' branding, text, code or proprietary assets.
-- Prefer free/browser-side tools and the existing Supabase architecture where practical; do not add paid AI/OCR services by default.
-- Extracted document data must remain a suggestion until reviewed, validated and explicitly saved by an authorized user.
-- HSE templates must be labelled as starters and assessed for the actual equipment, job, site and permit. Generic examples are not formal approvals.
-- A saved draft must never be represented as authorization to perform work.
+## Intelex — connected permits, JSA and authorization
+
+Public references:
+- https://www.intelex.com/products/applications/permit-work-software/
+- https://www.intelex.com/products/health-safety/applications/
+
+Adopted or planned patterns:
+- Connect a JSA/risk assessment to a permit rather than retyping the same hazards.
+- Show permit state, validity and authorization clearly.
+- Configure work-type-specific sections and required safety controls.
+- Keep an auditable sequence of request, review, authorization, suspension and closure.
+
+HSE360 status: JSA multi-select and reuse are available in local code; company-saved JSA templates were added in V8.9.0. Backend enforcement and live workflow validation remain pending.
+
+## MaintainX — fast mobile capture and offline resilience
+
+Public references:
+- https://help.getmaintainx.com/create-a-work-request
+- https://help.getmaintainx.com/offline-mode
+- https://help.getmaintainx.com/mobile-vs-web-overview
+
+Adopted or planned patterns:
+- Keep first capture short; allow additional details later.
+- Support photos/files from the field.
+- Use clear pending/review states and navigation badges.
+- If offline support is introduced, cache a controlled subset and surface sync/conflict state rather than silently overwriting records.
+
+HSE360 status: quick-create actions and optional draft fields exist; robust offline draft synchronization is not implemented or verified.
+
+## Cross-product lessons applied to the local candidate
+
+- A form should start with the minimum useful capture and put secondary details in collapsible sections.
+- A source finding should lead to an assigned, dated action with evidence and independent effectiveness verification.
+- Reusable JSA templates should reduce retyping but remain subject to site-specific review.
+- KPIs must link to real records and must not report missing data as zero.
+- Generated reports must include document metadata but must not imply approval just because a PDF was generated.
+
+## Avoided pitfalls
+
+- No fake sample records in operational views.
+- No invented compliance score based on record count.
+- No automatic approval/closure by AI.
+- No assumption that a feature works just because a UI element or SQL file exists.
+- No paid cloud OCR/AI dependency introduced by default.

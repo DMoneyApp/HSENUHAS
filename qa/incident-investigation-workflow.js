@@ -1,0 +1,21 @@
+const fs=require('fs');const assert=require('assert');const vm=require('vm');
+const app=fs.readFileSync(__dirname+'/../app.js','utf8');
+function getFunction(name){const m=app.match(new RegExp(`^  function ${name}\\([^\\n]*\\)\\{[\\s\\S]*?^  \\}`,'m'));assert(m,`function ${name} should exist`);return m[0]}
+const source=[getFunction('incidentWorkflowIssues'),getFunction('seriousCaseActionLinkGap'),getFunction('recordQualityMatches')].join('\n')+'\nthis.api={incidentWorkflowIssues,seriousCaseActionLinkGap,recordQualityMatches};';
+const action={id:'a1',module:'actions',reference_no:'CAR-01',data:{source_record_id:'i1',related_reference:'INC-01'}};
+const context={state:{records:[]},today:()=> '2026-10-13'};vm.runInNewContext(source,context);const api=context.api;
+const complete={id:'i1',module:'incidents',reference_no:'INC-01',data:{incident_type:'Injury',severity:'Major',investigation_status:'Completed',investigator:'HSE Manager',root_cause:'Guarding failure',evidence_reference:'INV-01',authority_notification:'Submitted',notification_reference:'AUTH-01'}};
+assert.deepStrictEqual(Array.from(api.incidentWorkflowIssues(complete)),[],'complete investigation and notification reference has no workflow gaps');
+const gaps=api.incidentWorkflowIssues({data:{incident_type:'Not classified',severity:'Critical',investigation_status:'In progress',authority_notification:'Required'}});
+for(const k of ['classification_missing','investigation_open','notification_reference_missing'])assert(gaps.includes(k),`incident review should flag ${k}`);
+assert(api.incidentWorkflowIssues({data:{incident_type:'Fire',severity:'Not classified',investigation_status:'Not assessed'}}).includes('severity_missing'),'unclassified severity is flagged');
+assert(api.incidentWorkflowIssues({data:{incident_type:'Fire',severity:'Major',investigation_status:'Completed',investigator:'HSE'}}).includes('completed_without_root_cause'));
+assert(api.incidentWorkflowIssues({data:{incident_type:'Fire',severity:'Major',investigation_status:'Completed',root_cause:'Cause',evidence_reference:'Report'}}).includes('investigator_missing'));
+assert.strictEqual(api.seriousCaseActionLinkGap({id:'i1',reference_no:'INC-01',data:{severity:'Critical'}},[]),true,'major/critical incidents without linked corrective action are flagged');
+assert.strictEqual(api.seriousCaseActionLinkGap({id:'i1',reference_no:'INC-01',data:{severity:'Critical'}},[action]),false,'source-linked action satisfies the linkage check');
+assert.strictEqual(api.seriousCaseActionLinkGap({id:'i1',reference_no:'INC-01',data:{severity:'Critical',corrective_action_reference:'CAR-99'}},[{id:'a2',module:'actions',reference_no:'CAR-99',data:{}}]),false,'explicit action reference must match an actual action');
+assert.strictEqual(api.recordQualityMatches('incidents',{id:'i1',reference_no:'INC-01',data:{severity:'Critical'}},'incident_action_gap'),true,'incident action gap filter is wired');
+assert(app.includes("const compactDetails={incidents:" ) && app.includes('incident-investigation-disclosure'),'detailed fields are collapsed so initial report form remains shorter');
+assert(app.includes("['incident_type','Incident type','select','Not classified|Injury" ) && app.includes("['severity','Severity','select','Not classified|Minor"),'new incident forms start without assumed classification');
+assert(app.includes("if(phase==='completed'){") && app.includes("toLowerCase()==='submitted'"),'investigation completion and submitted notification rules are wired');
+console.log('INCIDENT INVESTIGATION WORKFLOW: PASSED (12 logic scenarios plus 4 wiring assertions)');

@@ -51,3 +51,10 @@ This roadmap prioritizes daily HSE value over adding more disconnected screens. 
 - ISO, *ISO 45001 occupational health and safety management systems*: https://www.iso.org/cms/%20render/live/en/sites/isoorg/contents/data/standard/06/37/63787.html
 
 These references inform feature priorities only; they do not establish NUHAS's legal compliance.
+
+## V8.10.3 workflow completion update — 13 October 2026
+
+- Added a configured role/course matrix to competency records using separate `Employee Evidence` and `Role Requirement` purposes. Course codes and employee codes are explicit; duplicate/incomplete requirements are excluded from matching and surfaced for correction. Conditional requirements are not counted as mandatory gaps. Expiry is derived only when a refresh interval was supplied in an approved requirement.
+- Added audit review for findings with no linked corrective action and a frontend gate preventing new closure of major/critical incidents or accidents without an actual linked action.
+- Waste collection/transfer/disposal now has a shared front-end traceability preflight used by form submission and CSV imports; unfinished movements can remain Draft.
+- All 37 local QA scripts pass. These guards do not substitute for server-side controls or competent HSE approval. Per user direction, Supabase work is deferred; no configuration/database/production changes or GitHub deployment occurred.

@@ -104,3 +104,97 @@ html[data-theme="dark"] .workspace-switcher{background:#101a2b;border-color:#243
 @media(max-width:850px){.top-right .workspace-switcher{display:flex;max-width:195px}.workspace-switcher select{max-width:115px}.workspace-select-wrap label{display:none!important}.top-right{gap:5px}.user-chip{display:none}}
 @media(max-width:640px){.hse-quick-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hse-quick-actions>button{padding:10px;gap:8px}.hse-quick-actions b{font-size:10px}.hse-quick-actions small{font-size:9px}.workspace-switcher{max-width:154px;padding:4px}.workspace-logo{width:30px;height:30px;flex-basis:30px}.workspace-switcher select{max-width:100px;font-size:10px}.report-period-presets button{flex:1}}
 @media(max-width:380px){.hse-quick-actions{grid-template-columns:1fr}.workspace-switcher{max-width:122px}.workspace-logo{display:none}.workspace-switcher select{max-width:90px}}
+
+/* V8.9 usability: reusable company JSA templates stay visible and editable. */
+.jsa-save-template{grid-column:1/-1;border:1px solid var(--border,#dbe2ea);border-radius:12px;padding:12px;background:var(--surface-soft,#f8fafc);margin:4px 0 12px}
+.jsa-save-template .check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.jsa-save-template .check-row small{display:block;color:var(--muted,#667085);font-weight:400;margin-top:3px;line-height:1.45}
+.jsa-save-template .field{margin-top:8px}
+.jsa-template input[type=checkbox]{width:17px;height:17px;flex:0 0 auto;margin-top:2px;accent-color:var(--primary,#159a5b)}
+.jsa-template[hidden]{display:none!important}
+@media(max-width:640px){.jsa-template-grid{grid-template-columns:1fr!important}.jsa-save-template{padding:10px}}
+
+/* V8.10 field-work improvements: in-tab draft recovery and checklist-first capture. */
+.local-draft-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:12px 14px;border:1px solid #d5a33a;border-radius:12px;background:rgba(245,158,11,.09)}
+.local-draft-banner[hidden]{display:none!important}.local-draft-banner>div:first-child{display:grid;gap:4px}.local-draft-banner small,.local-draft-status{font-size:10px;color:var(--muted);line-height:1.45}
+.local-draft-status{flex:1;min-width:180px}.local-drafts-panel{margin:0 0 16px}.local-draft-list{display:grid;gap:8px}.local-draft-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px}.local-draft-row>div{display:grid;gap:4px;min-width:0}.local-draft-row b{font-size:12px;overflow-wrap:anywhere}.local-draft-row small{font-size:10px;color:var(--muted)}.local-draft-row .btn{flex:0 0 auto}
+.fire-template-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:12px;margin:0 0 14px;background:var(--surface2);border:1px solid var(--line);border-radius:12px}.fire-template-panel .field{grid-column:1/-1;margin:0}.fire-template-panel p{grid-column:1/-1;margin:0;font-size:11px;color:var(--muted);line-height:1.5}.fire-template-panel [data-fire-template-status]{align-self:center}.field[data-fire-check-field][hidden]{display:none!important}
+@media(max-width:640px){.local-draft-banner{align-items:flex-start}.local-draft-row{align-items:flex-start}.local-draft-row .btn{white-space:nowrap}.local-draft-status{flex-basis:100%;order:3}.fire-template-panel{grid-template-columns:1fr}.fire-template-panel button{width:100%}}
+html[data-theme="dark"] .local-draft-banner{background:rgba(245,158,11,.08);border-color:#77571b}
+/* V8.10.1: searchable cross-register command results */
+.top-search{position:relative}
+.global-search-results{position:absolute;top:calc(100% + 9px);left:0;width:min(560px,calc(100vw - 32px));max-height:min(65vh,520px);overflow:auto;background:var(--surface,#fff);color:var(--text,#1f2937);border:1px solid var(--line,#dce3ec);border-radius:13px;box-shadow:0 18px 48px rgba(8,20,40,.2);padding:6px;z-index:120}
+.global-search-results[hidden]{display:none}
+.global-search-result{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:11px 12px;border:0;border-radius:9px;background:transparent;color:inherit;cursor:pointer}
+.global-search-result:hover,.global-search-result.active{background:var(--surface-soft,#f4f7fb);outline:2px solid rgba(245,158,11,.3);outline-offset:-2px}
+.global-search-result-main{display:grid;gap:4px;min-width:0}
+.global-search-result-main b{font-size:12px;white-space:normal;overflow-wrap:anywhere}
+.global-search-result-main small{font-size:10px;color:var(--muted,#778397)}
+.global-search-empty{padding:16px 12px;font-size:12px;color:var(--muted,#778397)}
+html[data-theme="dark"] .global-search-results{background:#101a2b;border-color:#243247;color:var(--text)}
+html[data-theme="dark"] .global-search-result:hover,html[data-theme="dark"] .global-search-result.active{background:#18253a}
+@media(max-width:560px){.global-search-results{position:fixed;top:66px;left:8px;width:calc(100vw - 16px);max-height:70vh}}
+
+/* V8.10.2: mobile-first access to the global record search. */
+.mobile-search-toggle{display:none;flex:0 0 auto}
+.search-clear{width:25px;height:25px;flex:0 0 auto;border:0;border-radius:7px;background:transparent;color:var(--muted);display:grid;place-items:center;padding:0}
+.search-clear[hidden]{display:none!important}.search-clear:hover{background:var(--line);color:var(--text)}
+@media(max-width:560px){
+  .mobile-search-toggle{display:grid}
+  .topbar.mobile-search-open .top-search{display:flex;position:absolute;top:calc(100% + 6px);left:8px;right:8px;width:auto;max-width:none;min-height:46px;padding:9px 11px;background:var(--surface);border-color:var(--line);box-shadow:0 12px 36px rgba(8,20,40,.2);z-index:130}
+  .topbar.mobile-search-open .top-search input{min-width:0;font-size:14px}
+  .topbar.mobile-search-open .global-search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;width:auto;max-height:calc(100dvh - 140px)}
+}
+
+/* V8.10.3 — compact, actionable register quality panels */
+.register-insights{margin:0 0 14px;padding:17px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.register-insights .section-title{align-items:flex-start;margin-bottom:12px}
+.register-insights .section-title h2{margin:4px 0;font-size:16px;letter-spacing:-.02em}
+.register-insights .section-title p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+.quality-actions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.quality-action{display:flex;align-items:center;gap:10px;min-width:0;padding:11px 12px;text-align:left;color:var(--text);background:var(--surface2);border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.quality-action:hover,.quality-action:focus-visible{border-color:#e7a21a;background:var(--surface);outline:2px solid transparent}
+.quality-action>span{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.quality-action b{font-size:11px;line-height:1.35}
+.quality-action small{font-size:10px;line-height:1.4;color:var(--muted)}
+.quality-action strong{font-size:17px;font-variant-numeric:tabular-nums}
+.quality-action>svg{color:var(--muted);flex-shrink:0}
+.quality-foot{margin:12px 0 0;line-height:1.55;font-size:10px}
+html[data-theme="dark"] .register-insights{background:#101a2b;border-color:#243247}
+html[data-theme="dark"] .quality-action{background:#0d1625;border-color:#243247;color:var(--text)}
+@media(max-width:900px){.quality-actions-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.register-insights{padding:13px}.quality-actions-grid{grid-template-columns:1fr}.quality-action{padding:10px}.register-insights .section-title{gap:8px}}
+.quality-summary-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0}
+.quality-summary-strip>div{display:flex;flex-direction:column;gap:4px;padding:10px 11px;background:var(--surface2);border:1px solid var(--line);border-radius:9px;min-width:0}
+.quality-summary-strip b{font-size:18px;font-variant-numeric:tabular-nums}
+.quality-summary-strip span{font-size:10px;line-height:1.4;color:var(--muted)}
+.competency-coverage-table{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.competency-coverage-table .data-table{margin:0}
+.competency-coverage-table .data-table th{position:sticky;top:0;z-index:1}
+.competency-coverage-table td small{display:inline-block;margin-top:3px;color:var(--muted);font-size:10px}
+html[data-theme="dark"] .quality-summary-strip>div{background:#0d1625;border-color:#243247}
+@media(max-width:900px){.quality-summary-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.quality-summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.competency-coverage-table{max-height:420px}.competency-coverage-table .data-table{min-width:680px}}
+
+/* V8.10.3 — role requirement matrix controls */
+.competency-view-tabs{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 12px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.competency-view-tabs .btn{white-space:nowrap}
+.training-requirement-matrix .section-title .toolbar{display:flex;flex-wrap:wrap;gap:7px}
+.training-requirement-matrix .notice p{margin:5px 0 0}
+.training-requirement-matrix .form-disclosure{margin-top:10px}
+.training-requirement-matrix .badge.closed{background:#dcfce7;color:#166534}
+html[data-theme="dark"] .training-requirement-matrix .badge.closed{background:#153d2d;color:#9be1b4}
+@media(max-width:560px){.competency-view-tabs{padding:8px}.competency-view-tabs .btn{flex:1}.training-requirement-matrix .section-title .toolbar{width:100%}.training-requirement-matrix .section-title .toolbar .btn{flex:1}}
+
+/* V8.10.5 — simpler location capture, task JSA categories and permit sign-off */
+.permit-routing-section{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+.permit-routing-section>p{max-width:760px;line-height:1.5}
+.permit-sign-actions{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.permit-routing-section .form-disclosure{margin-top:10px}
+.permit-routing-section .form-grid{align-items:start}
+.jsa-template .badge{display:inline-flex;margin:4px 0 6px;font-size:10px}
+.jsa-template small{line-height:1.45}
+@media(max-width:560px){.permit-routing-section{padding:10px}.permit-sign-actions .btn{flex:1;min-width:100px}}
+.permit-class-guide{margin:10px 0 14px;padding:12px 14px}
+.permit-class-guide p{margin:5px 0;line-height:1.5}
+.permit-class-guide small{display:block;color:var(--muted);margin-top:6px}
