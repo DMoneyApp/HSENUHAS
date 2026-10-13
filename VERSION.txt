@@ -1,2 +1,1 @@
-NUHAS HSE360 V8.10.6 — Trial Usability & Draft-First Capture
-Cumulative local release candidate based on V8.10.5. Supabase unchanged; not deployed or live-verified.
+V8.10.8 — Permit Workflow & Approval Inbox Checkpoint (PRE-FORM-CHANGE ROLLBACK BASELINE)

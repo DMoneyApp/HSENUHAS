@@ -84,3 +84,10 @@ No production database migration or GitHub write was performed.
 - Full local QA suite: 37/37 scripts PASS; `node --check app.js` PASS.
 - Supabase, config, database migrations, production data, GitHub and deployment remained untouched; authenticated browser E2E is still pending.
 - Current checkpoint/package documentation: `V8.10.3-WORKING-CHECKPOINT.md`, `V8.10.3-FEATURE-COMPLETION-AND-LIMITATIONS.md` and `V8.10.3-LOCAL-QA-REPORT.md`.
+
+## V8.10.7 continuation checkpoint — 13 October 2026
+- Continued from the complete V8.10.6 cumulative master after an interrupted session.
+- Added save/load/auth failure recovery; register/all-record CSV exports now include module-specific fields and attachments; periodic report CSV includes document-control metadata.
+- Import now requires explicit opt-in to assign today's date to blank dates, allows choosing a worksheet in a multi-sheet workbook, and attempts browser OCR for generic scanned PDFs when available.
+- `node --check app.js` PASS; full local suite 43/43 QA scripts PASS.
+- No Supabase, production data, GitHub or deployment changes. Browser end-to-end test remains unverified.
