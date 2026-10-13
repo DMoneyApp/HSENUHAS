@@ -1,0 +1,27 @@
+const fs=require('fs');
+const assert=require('assert');
+const vm=require('vm');
+const app=fs.readFileSync(__dirname+'/../app.js','utf8');
+function getFunction(name){const re=new RegExp(`^  function ${name}\\([^\\n]*\\)\\{[\\s\\S]*?^  \\}`,'m');const m=app.match(re);assert(m,`function ${name} should exist`);return m[0]}
+const source=[getFunction('complianceDaysRemaining'),getFunction('riskScoreValidation'),getFunction('riskAssessmentIssues'),getFunction('recordQualityMatches')].join('\n')+'\nthis.api={riskScoreValidation,riskAssessmentIssues,recordQualityMatches};';
+const context={today:()=> '2026-10-13',state:{records:[]}};
+vm.runInNewContext(source,context);
+const api=context.api;
+assert.strictEqual(api.riskScoreValidation('1','5'),null,'minimum and maximum whole-number scores are accepted');
+assert.strictEqual(api.riskScoreValidation('3','4'),null);
+assert.strictEqual(api.riskScoreValidation('0','3').field,'likelihood','likelihood below 1 is rejected rather than silently clamped');
+assert.strictEqual(api.riskScoreValidation('6','3').field,'likelihood','likelihood above 5 is rejected');
+assert.strictEqual(api.riskScoreValidation('2.5','3').field,'likelihood','fractional likelihood is rejected');
+assert.strictEqual(api.riskScoreValidation('2','').field,'severity','missing severity is rejected');
+assert.deepStrictEqual(Array.from(api.riskAssessmentIssues({data:{activity:'Lifting copper coil',hazard:'Suspended load',likelihood:3,severity:4,existing_controls:'Certified crane and rigger',additional_controls:'Exclusion zone',responsible:'Supervisor',review_due_date:'2026-11-01',reviewed_by:'HSE'}})),[],'complete risk review record produces no workflow gaps');
+const gaps=api.riskAssessmentIssues({data:{likelihood:8,severity:0,review_due_date:'2026-10-01'}});
+for(const k of ['missing_activity','missing_hazard','missing_controls','missing_owner','invalid_score','review_due_overdue'])assert(gaps.includes(k),`should flag ${k}`);
+assert(api.riskAssessmentIssues({data:{activity:'Hot work',hazard:'Fire',likelihood:4,severity:3,existing_controls:'Permit',responsible:'Supervisor'}}).includes('high_without_additional_controls'),'high risk without additional controls is flagged');
+assert(!api.riskAssessmentIssues({data:{activity:'Routine inspection',hazard:'Noise',likelihood:2,severity:2,existing_controls:'Hearing protection',responsible:'Supervisor'}}).includes('high_without_additional_controls'),'moderate risk does not trigger high-risk control flag');
+assert(api.riskAssessmentIssues({data:{review_due_date:'31-12-2026'}}).includes('review_due_invalid'),'malformed nonblank review date is surfaced');
+assert.strictEqual(api.recordQualityMatches('risk',{data:{activity:'Hot work',hazard:'Fire',likelihood:4,severity:3,existing_controls:'Permit',responsible:'Supervisor'}},'risk_high_without_additional_controls','2026-10-13'),true,'risk issue filter is wired');
+assert(app.includes("if(module==='risk'){")&&app.includes('Risk assessment quality & review'),'risk quality panel is wired');
+assert(app.includes('riskScoreValidation(get(\'likelihood\'),get(\'severity\'))'),'risk save uses strict 1–5 integer validation, not a clamp');
+assert(app.includes("if(module==='tbt'){")&&app.includes("action('Talks missing attendance evidence'"),'toolbox-talk evidence panel is wired');
+assert(app.includes("['review_due_date','Risk assessment review due date','date','']"),'risk review due date is capturable');
+console.log('RISK REVIEW WORKFLOW: PASSED (12 logic scenarios plus 3 wiring assertions)');

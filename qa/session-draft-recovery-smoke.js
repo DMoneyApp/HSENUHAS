@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const app=fs.readFileSync(require('node:path').join(__dirname,'..','app.js'),'utf8');
+assert.match(app,/function localDraftPrefix\(\)/,'drafts must be scoped');
+assert.match(app,/activeOrgId\(\).*state\.session\?\.user\?\.id/,'drafts must be isolated by company and user');
+assert.match(app,/sessionStorage\.setItem\(key,JSON\.stringify\(payload\)\)/,'draft snapshots must be saved to session-only storage');
+assert.match(app,/if\(el\.type==='file'\)return/,'file attachments must not be stored in browser draft data');
+assert.match(app,/data-local-draft-restore/,'form must offer explicit recovery');
+assert.match(app,/data-reopen-local-draft/,'dashboard must expose a resume path');
+assert.match(app,/sessionStorage\.removeItem\(modal\.dataset\.localDraftKey/,'successful submission must clear the corresponding local draft');
+assert.match(app,/do not sync to other devices|not submitted company records/,'interface must clearly state draft persistence limitation');
+console.log('SESSION DRAFT RECOVERY SMOKE: PASSED (8 assertions)');
