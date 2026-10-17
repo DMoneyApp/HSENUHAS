@@ -1,1 +1,1 @@
-V8.11.0 — Integrated HSE Registers and One-Click Action Management (Local Release Candidate)
+V8.10.9 — Cumulative HSE360 & Attachment Persistence Fix (Local Release Candidate)
