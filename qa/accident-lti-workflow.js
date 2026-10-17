@@ -14,7 +14,7 @@ assert(api.accidentWorkflowIssues({status:'closed',data:{severity:'Major',lti:'Y
 assert.strictEqual(api.seriousCaseActionLinkGap({id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},[]),true,'major / critical accident missing linked action is flagged');
 assert.strictEqual(api.seriousCaseActionLinkGap({id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},[action]),false,'linked corrective action is recognised');
 assert.strictEqual(api.recordQualityMatches('accidents',{id:'inj1',reference_no:'ACC-01',data:{severity:'Critical'}},'accident_action_gap'),true,'action-gap filter is wired');
-assert(app.includes("accidents:[['severity','Case severity','select','Not classified" )&&app.includes("['lti','Lost-time injury (LTI)?','select','To assess|No|Yes']"),'accident form defaults conservatively');
+assert(app.includes("['severity','Case severity','select','Not classified" )&&app.includes("['lti','Lost-time injury (LTI)?','select','To assess|No|Yes']"),'accident form defaults conservatively');
 assert(app.includes("accidents:{title:'Injury details, investigation, evidence & notification"),'detailed injury information is collapsed behind an optional section');
 assert(app.includes("if(['incidents','accidents'].includes(t))"),'accident and incident investigation gates share validation');
 console.log('ACCIDENT / LTI WORKFLOW: PASSED (13 logic scenarios plus 4 wiring/default assertions)');

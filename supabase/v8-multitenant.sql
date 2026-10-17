@@ -550,7 +550,7 @@ begin
   select * into r from public.hse_records where id=p_id and organization_id=p_org_id;
   if r.id is null then raise exception 'Record not found'; end if;
   if not (public.has_module_permission(auth.uid(),p_org_id,r.module,'edit_own',r.created_by) or public.has_module_permission(auth.uid(),p_org_id,r.module,'edit_all',r.created_by)) then raise exception 'You do not have permission to edit this record'; end if;
-  update public.hse_records set event_date=coalesce(p_event_date,event_date),location=nullif(trim(p_location),''),department=nullif(trim(p_department),''),status=coalesce(nullif(trim(p_status),''),status),summary=trim(p_summary),data=coalesce(p_data,'{}'::jsonb),attachment=p_attachment,updated_at=now() where id=p_id returning * into r;
+  update public.hse_records as target set event_date=coalesce(p_event_date,target.event_date),location=nullif(trim(p_location),''),department=nullif(trim(p_department),''),status=coalesce(nullif(trim(p_status),''),target.status),summary=trim(p_summary),data=coalesce(p_data,'{}'::jsonb),attachment=coalesce(p_attachment,target.attachment),updated_at=now() where target.id=p_id returning target.* into r;
   insert into public.audit_events(organization_id,actor_id,action,target_type,target_id,details)
   values(p_org_id,auth.uid(),'UPDATE','hse_record',r.id,jsonb_build_object('reference_no',r.reference_no,'module',r.module));
   return r;

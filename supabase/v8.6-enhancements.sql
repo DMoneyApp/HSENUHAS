@@ -271,7 +271,7 @@ begin
       p_data := coalesce(p_data,'{}'::jsonb) || jsonb_build_object('approval_revoked_at',now(),'approval_revoked_by',auth.uid());
     end if;
   end if;
-  update public.hse_records set event_date=coalesce(p_event_date,event_date),location=nullif(trim(p_location),''),department=nullif(trim(p_department),''),status=v_status,summary=trim(p_summary),data=coalesce(p_data,'{}'::jsonb),attachment=p_attachment,updated_at=now() where id=p_id returning * into r;
+  update public.hse_records as target set event_date=coalesce(p_event_date,target.event_date),location=nullif(trim(p_location),''),department=nullif(trim(p_department),''),status=v_status,summary=trim(p_summary),data=coalesce(p_data,'{}'::jsonb),attachment=coalesce(p_attachment,target.attachment),updated_at=now() where target.id=p_id returning target.* into r;
   insert into public.audit_events(organization_id,actor_id,action,target_type,target_id,details)
   values(p_org_id,auth.uid(),case when r.module='permits' and v_status='approved' and v_old_status<>'approved' then 'APPROVE' else 'UPDATE' end,'hse_record',r.id,jsonb_build_object('reference_no',r.reference_no,'module',r.module,'status',r.status));
   return r;

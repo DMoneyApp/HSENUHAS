@@ -15,5 +15,7 @@ The following V8.8.x SQL files are **not applied by this package** and must not 
 - `v8.8.1-capa-closure-guard.sql` — corrective-action closure validation candidate.
 - `v8.8.2-permit-lifecycle-guard.sql` — candidate permit lifecycle checks.
 - `v8.8.4-certificate-duplicate-guard.sql` — preflight plus tenant-scoped unique indexes for certificate duplicate keys. The preflight raises an exception if matching existing keys are found; review history with record owners and resolve only under an approved data-change plan.
+- `v8.10.9-attachment-preservation.sql` — retains existing attachment metadata when an update RPC call omits replacement metadata. Reconcile the target function version and validate the migration in staging before production.
+- `v8.11.0-hse-status-history.sql` — appends authenticated HSE status/remark history with a server timestamp, validates effective completion/backdate/reopen reasons, and blocks closure of cases with outstanding linked corrective actions. Reconcile the deployed RPC and trigger definitions, run against a staging clone, and validate supported statuses/permissions before production. This is a candidate migration only and has not been applied.
 
 Take a database backup/export, reconcile the live schema and migration history, then run each applicable candidate in a non-production Supabase project and test both allowed and denied paths before scheduling production change control. Static SQL tests are not database execution tests.
