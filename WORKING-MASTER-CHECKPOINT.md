@@ -1,7 +1,7 @@
 # NUHAS HSE360 — Working Master Checkpoint
 
-Updated: 2026-10-13
-Current local candidate: V8.10.2 — Mobile Global Search & Search Accuracy
+Updated: 2026-10-17
+Current local candidate: V8.10.9 — Cumulative HSE360 & Attachment Persistence Fix
 Cumulative lineage: integrity-checked V8.8.8 source → V8.8.9/8.8.10 → V8.10.0 → V8.10.1 → V8.10.2. Current source of truth for continuation is the full V8.10.2 working directory and `NUHAS-HSE360-V8.10.2-CUMULATIVE-MASTER.zip`; older checkpoints below are historical. All work remains local and un-deployed.
 
 ## Permanent workflow rule
@@ -43,6 +43,14 @@ The public GitHub `main` branch was accessible through the repository web view d
 8. Reconcile V8.8.9 with GitHub before any authorized deploy.
 
 No production database migration or GitHub write was performed.
+
+## V8.10.9 checkpoint — 17 October 2026
+- Continued from the V8.10.8 source checkpoint on a clean development branch after preserving a full-history Git bundle and pre-change source snapshot.
+- Fixed the audited `update_hse_record` RPC so omitted/NULL attachment metadata preserves the existing attachment; added `supabase/v8.10.9-attachment-preservation.sql` for staging migration and `qa/v8109-attachment-preservation.js`.
+- `VERSION.txt` and current README identify V8.10.9. Full audit, limitations, QA, deployment, and rollback guidance are in versioned documents.
+- Current live GitHub Pages endpoint returned HTTP 200 and V8.10.8 on 2026-10-17. No push, deploy, production database migration, or live writes were performed.
+- The original V8.10.8 ZIP is not in the repository, Git history, GitHub Releases (zero releases), or repository root assets. The V8.10.8 checkpoint/changelog/QA/source files exist; a pre-change source snapshot and full-history bundle were created for preservation, but neither is represented as the missing original ZIP.
+- Local verification covers syntax and deterministic/static regression scripts only. Live Supabase permissions, authenticated browser workflows, SQL execution and print/export interactions remain unverified.
 
 ## V8.8.9 checkpoint — 12 October 2026
 - Based on the user-uploaded V8.8.8 cumulative master; kept as a separate working copy.

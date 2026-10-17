@@ -1,14 +1,8 @@
-# NUHAS HSE360 — V8.10.6 Local Cumulative Candidate
+# NUHAS HSE360 — V8.11.0 Local Cumulative Candidate
 
-**Current checkpoint:** added role-specific training requirements and evidence matching, audit finding → corrective-action linkage review, major/critical case closure gating and traceable waste movement checks in both form entry and CSV imports.
+V8.11.0 builds on the preserved V8.10.9 cumulative candidate. It adds compact operational registers for observations, near misses, incidents, accidents/LTI and first aid; inline progress/closure/reopen controls; canonical linked action visibility; and a database trigger that records authenticated status history with server time. The V8.10.9 ZIP, Git bundle and source snapshot remain preserved outside this working tree. This V8.11.0 candidate has not been pushed, deployed or applied to a database. Read `V8.11.0-CHANGELOG.md`, `V8.11.0-LOCAL-QA-REPORT.md`, `V8.11.0-MODIFIED-FILES.md`, `V8.11.0-KNOWN-ISSUES.md`, `V8.11.0-DEPLOYMENT-GUIDE.md`, and `V8.11.0-ROLLBACK-GUIDE.md` before staging it. V8.10.9 notes are retained for the prior cumulative release.
 
-**Release status:** local cumulative candidate. `node --check app.js` and all 37 local QA scripts pass. Supabase configuration/schema/policies/storage, GitHub and production data were not changed. Authenticated browser E2E and live integration tests remain pending. See `V8.10.3-CHANGELOG.md`, `V8.10.3-LOCAL-QA-REPORT.md`, and `V8.10.3-FEATURE-COMPLETION-AND-LIMITATIONS.md`.
-
-# Current local cumulative build — V8.10.3
-
-V8.10.3 carries forward the V8.10.2 mobile global search, recoverable form drafts, weekly/monthly fire checklist templates, reusable JSA selection, permit controls, corrective-action workflows, compliance reminders, controlled reports, imports and notification navigation. This increment adds the explicit role-based training matrix; audit findings without linked actions; closure gating for newly closed major/critical incidents and accidents; and traceability preflight for completed waste movements (including CSV import). Full details and constraints are recorded in the V8.10.3 release files. Not deployed or live-verified.
-
----
+Historical checkpoint notes below describe earlier versions; they are not the current release status.
 
 # NUHAS HSE360 — V8.10.2 Local Cumulative Candidate
 

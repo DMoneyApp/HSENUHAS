@@ -1,1 +1,1 @@
-V8.10.8 — Permit Workflow & Approval Inbox Checkpoint (PRE-FORM-CHANGE ROLLBACK BASELINE)
+V8.11.0 — Integrated HSE Registers and One-Click Action Management (Local Release Candidate)
