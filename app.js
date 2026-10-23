@@ -1158,7 +1158,7 @@
       if(['extracted_text','text_content','document_text','description','summary','incident_description','observation_description','work_summary','remarks'].includes(n))return 'summary';
       if(['date','event_date','record_date','incident_date'].includes(n))return 'event_date';
       if(options.some(o=>o[0]===`data:${n}`))return `data:${n}`;
-      if(['inspection_date','training_date','issue_date','joining_date'].includes(n))return 'event_date';
+      if(['inspection_date','training_date','issue_date'].includes(n)||(n==='joining_date'&&module!=='employees'))return 'event_date';
       if(['location','equipment_location','area','site','work_location'].includes(n))return 'location';
       if(['department','department_name','dept','section'].includes(n))return 'department';
       if(['status','record_status'].includes(n))return 'status';
